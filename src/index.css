@@ -5,10 +5,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --bg_dark: #18191a;
+  --dark-mode-color-text: #fff;
+  --bg_light: #ffffff;
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--bg_dark);
+  color: var(--dark-mode-color-text);
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
 }
