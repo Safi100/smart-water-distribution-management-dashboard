@@ -9,7 +9,6 @@ import {
 import axios from "axios";
 import Navbar from "./components/navbar/Navbar";
 import { useAuth } from "./context/AuthContext";
-import LoadingPage from "./components/loading/Loading";
 import "./index.css";
 
 axios.defaults.withCredentials = true;
@@ -19,6 +18,10 @@ const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const NotFoundPage = lazy(() => import("./pages/notfound/NotFound"));
 const LoginPage = lazy(() => import("./pages/auth/Login"));
 const ForgotPasswordPage = lazy(() => import("./pages/auth/ForgotPassword"));
+const NewCityPage = lazy(() => import("./pages/newCity/NewCity"));
+const CustomersPage = lazy(() => import("./pages/customers/Customers"));
+const EmployeePage = lazy(() => import("./pages/employees/Employees"));
+const CitiesPage = lazy(() => import("./pages/cities/Cities"));
 
 function Layout({ children }) {
   const location = useLocation();
@@ -49,6 +52,10 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/add-city" element={<NewCityPage />} />
+          <Route path="/customers" element={<CustomersPage />} />
+          <Route path="/employees" element={<EmployeePage />} />
+          <Route path="/cities" element={<CitiesPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
