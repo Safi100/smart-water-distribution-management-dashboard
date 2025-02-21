@@ -22,6 +22,7 @@ const NewCityPage = lazy(() => import("./pages/newCity/NewCity"));
 const CustomersPage = lazy(() => import("./pages/customers/Customers"));
 const EmployeePage = lazy(() => import("./pages/employees/Employees"));
 const CitiesPage = lazy(() => import("./pages/cities/Cities"));
+const CityPage = lazy(() => import("./pages/city/City"));
 
 function Layout({ children }) {
   const location = useLocation();
@@ -56,6 +57,7 @@ function App() {
           <Route path="/customers" element={<CustomersPage />} />
           <Route path="/employees" element={<EmployeePage />} />
           <Route path="/cities" element={<CitiesPage />} />
+          <Route path="/city/:id" element={<CityPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
