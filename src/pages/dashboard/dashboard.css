@@ -1,0 +1,27 @@
+.dashboard_row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Default: 3 equal columns */
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.dashboard_data_div {
+  background-color: #242526;
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}
+/* For Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+  .dashboard_row {
+    grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns */
+    gap: 16px;
+  }
+}
+
+/* For Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .dashboard_row {
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 12px;
+  }
+}
