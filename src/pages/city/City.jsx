@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import axios from "axios";
@@ -6,28 +6,31 @@ import { useParams } from "react-router-dom";
 
 const City = () => {
   const { id } = useParams();
-  const [tanks, setTanks] = useState([]);
+  const [city, setCity] = useState({});
+  const mapContainer = useRef(null); // Create a reference for the map container
 
+  // Fetch city data from the API
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/tank/city/${id}`)
+      .get(`http://localhost:8000/api/city/${id}`)
       .then((res) => {
         console.log(res.data);
-        setTanks(res.data);
+        setCity(res.data);
       })
       .catch((error) => {
         console.error("Error fetching city data:", error);
       });
   }, [id]);
 
+  // Initialize the map after the city data is available
   useEffect(() => {
-    if (tanks.length === 0) return; // Ensure we have data before initializing the map
+    if (city.tanks?.length === 0 || !mapContainer.current) return; // Ensure map container exists
 
     mapboxgl.accessToken =
       "pk.eyJ1Ijoic2FmaW8xMDAiLCJhIjoiY20zcjgwZHE1MDJ3YTJqc2Z2eWNzMzA3ZSJ9.WgiGpG_mQbxDnFP_Ygtqww";
 
     const map = new mapboxgl.Map({
-      container: "cluster-map",
+      container: mapContainer.current, // Use the ref for the container
       style: "mapbox://styles/mapbox/dark-v11",
       center: [35.227, 31.9466],
       zoom: 9,
@@ -38,7 +41,7 @@ const City = () => {
     // Convert tanks data to GeoJSON format
     const geojsonTanks = {
       type: "FeatureCollection",
-      features: tanks.map((tank) => ({
+      features: city.tanks?.map((tank) => ({
         type: "Feature",
         geometry: {
           type: "Point",
@@ -55,6 +58,8 @@ const City = () => {
         },
       })),
     };
+
+    // Handle map loading and layers
     map.on("load", () => {
       map.addSource("tanks", {
         type: "geojson",
@@ -64,7 +69,7 @@ const City = () => {
         clusterRadius: 50,
       });
 
-      // Clustered points
+      // Clustered points layer
       map.addLayer({
         id: "clusters",
         type: "circle",
@@ -76,7 +81,7 @@ const City = () => {
         },
       });
 
-      // Cluster count
+      // Cluster count layer
       map.addLayer({
         id: "cluster-count",
         type: "symbol",
@@ -88,7 +93,7 @@ const City = () => {
         },
       });
 
-      // Unclustered points
+      // Unclustered points layer
       map.addLayer({
         id: "unclustered-point",
         type: "circle",
@@ -144,13 +149,30 @@ const City = () => {
       });
     });
 
-    return () => map.remove();
-  }, [tanks]);
+    return () => map.remove(); // Clean up on component unmount
+  }, [city]);
 
-  return (
+  return city && Object.keys(city).length > 0 ? (
     <>
-      <div id="cluster-map" style={{ height: "500px", width: "100%" }} />
+      <div ref={mapContainer} style={{ height: "450px", width: "100%" }} />
+      <div className="p-3">
+        <h2>{city.name}</h2>
+        <p>Total tanks: {city.tanks?.length}</p>
+        <ul>
+          {city.tanks?.map((tank) => (
+            <li key={tank._id}>
+              <p>Tank for {tank.owner?.name}</p>
+              <p>Monthly capacity: {tank.monthly_capacity}</p>
+              <p>Family members: {tank.family_members.length}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
+  ) : (
+    <div className="wrapper py-4">
+      <h2 className="text-danger">City not found</h2>
+    </div>
   );
 };
 
