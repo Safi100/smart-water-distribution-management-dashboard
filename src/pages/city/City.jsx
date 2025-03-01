@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import mapboxgl from "mapbox-gl";
+import WaterTank from "../../components/WaterTank/WaterTank";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "./city.css";
 
 const City = () => {
   const { id } = useParams();
@@ -158,15 +160,32 @@ const City = () => {
       <div className="p-3">
         <h2>{city.name}</h2>
         <p>Total tanks: {city.tanks?.length}</p>
-        <ul>
+        <div className="tanks_div">
           {city.tanks?.map((tank) => (
-            <li key={tank._id}>
-              <p>Tank for {tank.owner?.name}</p>
-              <p>Monthly capacity: {tank.monthly_capacity}</p>
-              <p>Family members: {tank.family_members.length}</p>
-            </li>
+            <div className="tank_div">
+              <h3 className="mb-4">
+                Customer:{" "}
+                <a
+                  className="text-primary"
+                  href={`/customer/${tank.owner?._id}`}
+                >
+                  {tank.owner?.name}
+                </a>
+              </h3>
+              <WaterTank
+                maxCapacity={tank.max_capacity}
+                currentLevel={tank.current_level}
+              />
+              <p>Mothly credit : {tank.monthly_capacity} L /Month</p>
+              <a
+                className="btn btn-sm btn-primary mt-3"
+                href={`/tank/${tank._id}`}
+              >
+                Read More
+              </a>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </>
   ) : (
