@@ -1,0 +1,38 @@
+.tank {
+  position: relative;
+  width: 160px;
+  height: 240px;
+  border: 4px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: transparent;
+  border-top: 0;
+  overflow: hidden;
+}
+.tank_div {
+  display: flex;
+  flex-direction: column;
+}
+.tank {
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.water {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #007bff;
+  transition: height 1s ease-in-out;
+}
+
+.status {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.warning {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}
