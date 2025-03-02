@@ -43,7 +43,7 @@ const PasswordForm = () => {
   };
 
   return (
-    <form noValidate className={`updateProfile_form`} onSubmit={handleSubmit}>
+    <form className={`updateProfile_form`} onSubmit={handleSubmit}>
       <h5 className="mb-4">Update password</h5>
       <div className="mb-3">
         <label className="form-label" htmlFor="current_password">
