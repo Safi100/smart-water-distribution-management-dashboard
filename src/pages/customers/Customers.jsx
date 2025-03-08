@@ -1,10 +1,13 @@
 import { useEffect, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { MaterialReactTable } from "material-react-table";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Button } from "@mui/material";
 import axios from "axios";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
+  const navigate = useNavigate(); // For navigation
 
   useEffect(() => {
     axios
@@ -16,7 +19,7 @@ const Customers = () => {
       .catch((error) => {
         console.error("Error fetching customers data:", error);
       });
-  }, []); // <-- Added dependency array to prevent infinite calls
+  }, []);
 
   // Dark theme configuration
   const darkTheme = createTheme({
@@ -24,7 +27,7 @@ const Customers = () => {
       mode: "dark",
       background: {
         default: "#242526",
-        paper: "#242526", // Set table background
+        paper: "#242526",
       },
       text: {
         primary: "#FFFFFF",
@@ -35,22 +38,22 @@ const Customers = () => {
       MuiTableContainer: {
         styleOverrides: {
           root: {
-            backgroundColor: "#242526", // Ensure table container has the same background
+            backgroundColor: "#242526",
           },
         },
       },
       MuiPaper: {
         styleOverrides: {
           root: {
-            backgroundColor: "#242526", // Set paper background
+            backgroundColor: "#242526",
           },
         },
       },
       MuiTableCell: {
         styleOverrides: {
           root: {
-            backgroundColor: "#242526", // Apply background to table cells
-            color: "#FFFFFF", // Ensure text is readable
+            backgroundColor: "#242526",
+            color: "#FFFFFF",
           },
         },
       },
@@ -62,7 +65,7 @@ const Customers = () => {
     () => [
       {
         id: "identity_number",
-        header: "Identity_number",
+        header: "Identity Number",
         accessorKey: "identity_number",
       },
       {
@@ -80,8 +83,23 @@ const Customers = () => {
         header: "Phone Number",
         accessorKey: "phone",
       },
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        Cell: ({ row }) => (
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => navigate(`/customer/${row.original._id}`)}
+          >
+            View Profile
+          </Button>
+        ),
+      },
     ],
-    []
+    [navigate]
   );
 
   return (

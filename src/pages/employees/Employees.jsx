@@ -2,9 +2,12 @@ import { useEffect, useState, useMemo } from "react";
 import { MaterialReactTable } from "material-react-table";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
-const Employees = () => {
+const Employees = ({ currentUser }) => {
   const [employees, setEmployees] = useState([]);
+  const navigate = useNavigate(); // For navigation
 
   useEffect(() => {
     axios
@@ -79,6 +82,21 @@ const Employees = () => {
         id: "role",
         header: "Role",
         accessorKey: "role",
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        accessorKey: "id",
+        Cell: ({ row }) => (
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => navigate(`/employee-profile/${row.original._id}`)}
+          >
+            View Profile
+          </Button>
+        ),
       },
     ],
     []
