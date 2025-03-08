@@ -3,3 +3,26 @@
   border-radius: 10px;
   padding: 20px;
 }
+.tanks_div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.tanks_div .tank_div {
+  background: #242526;
+  padding: 20px;
+}
+
+@media (max-width: 1024px) {
+  .tanks_div {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 568px) {
+  .tanks_div {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

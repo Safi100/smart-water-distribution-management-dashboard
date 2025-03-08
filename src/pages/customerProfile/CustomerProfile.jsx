@@ -1,6 +1,7 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import WaterTank from "../../components/WaterTank/WaterTank";
+import axios from "axios";
 import "./customerProfile.css";
 
 const CustomerProfile = () => {
@@ -44,7 +45,26 @@ const CustomerProfile = () => {
       </div>
       <div className="mt-4">
         {customer.tanks?.length > 0 ? (
-          <h2>Tanks: {customer.tanks?.length}</h2>
+          <>
+            <h2 className="mb-4">Tanks: {customer.tanks?.length}</h2>
+            <div className="tanks_div">
+              {customer.tanks?.map((tank) => (
+                <div className="tank_div">
+                  <WaterTank
+                    maxCapacity={tank.max_capacity}
+                    currentLevel={tank.current_level}
+                  />
+                  <p>Mothly credit : {tank.monthly_capacity} L /Month</p>
+                  <a
+                    className="btn btn-sm btn-primary mt-3"
+                    href={`/tank/${tank._id}`}
+                  >
+                    Read More
+                  </a>
+                </div>
+              ))}
+            </div>
+          </>
         ) : (
           <h2 className="text-danger">No tanks yet...</h2>
         )}
