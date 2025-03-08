@@ -157,7 +157,7 @@ const City = () => {
   return city && Object.keys(city).length > 0 ? (
     <>
       <div ref={mapContainer} style={{ height: "450px", width: "100%" }} />
-      <div className="p-3">
+      <div className="wrapper py-3">
         <h2>{city.name}</h2>
         <p>Total tanks: {city.tanks?.length}</p>
         <div className="tanks_div">

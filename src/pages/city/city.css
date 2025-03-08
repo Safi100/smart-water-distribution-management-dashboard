@@ -1,18 +1,12 @@
 .tanks_div {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 .tanks_div .tank_div {
   background: #242526;
   padding: 20px;
-}
-
-@media (max-width: 1250px) {
-  .tanks_div {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
+  border-radius: 5px;
 }
 
 @media (max-width: 1024px) {
