@@ -23,6 +23,13 @@ const CustomersPage = lazy(() => import("./pages/customers/Customers"));
 const EmployeePage = lazy(() => import("./pages/employees/Employees"));
 const CitiesPage = lazy(() => import("./pages/cities/Cities"));
 const CityPage = lazy(() => import("./pages/city/City"));
+const TankProfilePage = lazy(() => import("./pages/TankProfile/TankProfile"));
+const CustomerProfilePage = lazy(() =>
+  import("./pages/customerProfile/CustomerProfile")
+);
+const AdminProfilePage = lazy(() =>
+  import("./pages/adminProfile/AdminProfile")
+);
 
 function Layout({ children }) {
   const location = useLocation();
@@ -55,9 +62,18 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/add-city" element={<NewCityPage />} />
           <Route path="/customers" element={<CustomersPage />} />
-          <Route path="/employees" element={<EmployeePage />} />
+          <Route
+            path="/employees"
+            element={<EmployeePage currentUser={currentUser} />}
+          />
           <Route path="/cities" element={<CitiesPage />} />
+          <Route
+            path="/employee-profile/:id"
+            element={<AdminProfilePage currentUser={currentUser} />}
+          />
           <Route path="/city/:id" element={<CityPage />} />
+          <Route path="/customer/:id" element={<CustomerProfilePage />} />
+          <Route path="/tank/:id" element={<TankProfilePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
