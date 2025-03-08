@@ -1,0 +1,91 @@
+.tank_profile_info {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  row-gap: 50px;
+  justify-content: space-between;
+  background: #242526;
+}
+.tank_profile_info .map-container {
+  width: 100%;
+  max-width: 428px;
+}
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Details section */
+.details {
+  margin-bottom: 20px;
+}
+
+.details p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  /* color: #555; */
+}
+
+/* Map container */
+.map-container {
+  width: 100%;
+}
+
+.map-container iframe {
+  width: 100%;
+  border-radius: 6px;
+}
+
+/* Responsive design */
+@media (max-width: 823px) {
+  .tank_profile_info .map-container {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .details p {
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .title {
+    font-size: 18px;
+  }
+  .details p {
+    font-size: 13px;
+  }
+}
+.tank_profile_tank_info {
+  margin: 30px 0;
+  display: flex;
+  gap: 30px;
+}
+.tank_profile_tank_info > div,
+.tank_profile_tank_family {
+  background: #242526;
+  width: 100%;
+  border-radius: 8px;
+  padding: 20px;
+}
+.tank_profile_tank_info .tank_container {
+  max-width: 500px;
+}
+.family_members_div {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.family_members_div .family_member_div {
+  background: #3a3b3c;
+  width: 100%;
+  border-radius: 8px;
+  padding: 20px;
+}
