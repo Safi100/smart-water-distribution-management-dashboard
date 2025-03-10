@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import "./waterTank.css"; // Import external CSS
 
-const WaterTank = ({ maxCapacity = 2.41, currentLevel = 1.5 }) => {
+const WaterTank = ({ maxCapacity, currentLevel }) => {
   const levelPercentage = Math.min((currentLevel / maxCapacity) * 100, 100);
 
   return (

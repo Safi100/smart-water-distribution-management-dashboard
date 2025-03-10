@@ -77,7 +77,10 @@ const TankProfile = () => {
         </div>
       </div>
       <div className="tank_profile_tank_info">
-        <WaterTank />
+        <WaterTank
+          maxCapacity={tank.max_capacity}
+          currentLevel={tank.current_level}
+        />
         <div>
           <h2 className="title">Water Usage</h2>
           <p>
