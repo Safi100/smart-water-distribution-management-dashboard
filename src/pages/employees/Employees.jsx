@@ -21,6 +21,25 @@ const Employees = ({ currentUser }) => {
       });
   }, []); // <-- Added dependency array to prevent infinite calls
 
+  // remove employee
+  const removeEmployee = (id) => {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this employee?"
+    );
+    if (!isConfirmed) {
+      return; // User cancelled the deletion
+    }
+    axios
+      .delete(`http://localhost:8000/api/admin/${id}`)
+      .then((res) => {
+        console.log("Employee deleted successfully");
+        setEmployees(employees.filter((employee) => employee._id !== id));
+      })
+      .catch((error) => {
+        console.error("Error deleting employee:", error);
+      });
+  };
+
   // Dark theme configuration
   const darkTheme = createTheme({
     palette: {
@@ -88,14 +107,27 @@ const Employees = ({ currentUser }) => {
         header: "Actions",
         accessorKey: "id",
         Cell: ({ row }) => (
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={() => navigate(`/employee-profile/${row.original._id}`)}
-          >
-            View Profile
-          </Button>
+          <div className="d-flex align-items-center gap-2">
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={() => navigate(`/employee-profile/${row.original._id}`)}
+            >
+              View
+            </Button>
+            {currentUser.role === "admin" &&
+              row.original._id !== currentUser._id && (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="small"
+                  onClick={() => removeEmployee(row.original._id)}
+                >
+                  Delete
+                </Button>
+              )}
+          </div>
         ),
       },
     ],
