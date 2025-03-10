@@ -134,36 +134,17 @@ function Navbar() {
                   <MenuItem onClick={handleCloseNavMenu}>
                     <a href={"/"}>Home</a>
                   </MenuItem>
-                  {currentUser?.isAdmin && (
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <a href={"/admin/add-new-game"}>Add New Game</a>
-                    </MenuItem>
-                  )}
-                  {currentUser?.isAdmin && (
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <a href={"/admin/games-control"}>Games Control</a>
-                    </MenuItem>
-                  )}
-                  {currentUser?.isAdmin && (
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <a href={"/admin/add-new-giveaway"}>Add New Giveaway</a>
-                    </MenuItem>
-                  )}
-                  {currentUser?.isAdmin && (
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <a href={"/admin/banned-users"}>Banned users</a>
-                    </MenuItem>
-                  )}
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <a href={`/giveaway?page=${1}&gameCategory=`}>Giveaways</a>
+                    <a href={"/add-city"}>Add city</a>
                   </MenuItem>
-                  {currentUser && (
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <a href={"/giveaway/my-giveaway"}>My giveaways</a>
-                    </MenuItem>
-                  )}
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <a href={"/help"}>Help</a>
+                    <a href={"/add-tanl"}>Add tank</a>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <a href={"/add-employee"}>Add employee</a>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <a href={"/add-customer"}>Add customer</a>
                   </MenuItem>
                 </Menu>
               </span>
@@ -280,7 +261,7 @@ function Navbar() {
                 >
                   <MenuItem onClick={handleCloseUserMenu}>
                     <a
-                      href={`/profile/${currentUser._id}`}
+                      href={`/admin-profile/${currentUser._id}`}
                       style={{ display: "flex", alignItems: "center" }}
                     >
                       <Avatar /> Profile
