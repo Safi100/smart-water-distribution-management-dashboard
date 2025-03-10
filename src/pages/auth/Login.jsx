@@ -29,7 +29,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.error("Error logging in:", err);
-        Notify(err.response.data);
+        Notify(err.response?.data || "An error occurred while logging in.");
       });
   };
   return (
