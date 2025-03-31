@@ -26,6 +26,7 @@ const CityPage = lazy(() => import("./pages/city/City"));
 const TankProfilePage = lazy(() => import("./pages/TankProfile/TankProfile"));
 const NewCustomerPage = lazy(() => import("./pages/newCustomer/NewCustomer"));
 const NewEmployeePage = lazy(() => import("./pages/newEmployee/NewEmployee"));
+const NewTankPage = lazy(() => import("./pages/newTank/NewTank"));
 const CustomerProfilePage = lazy(() =>
   import("./pages/customerProfile/CustomerProfile")
 );
@@ -64,6 +65,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/add-city" element={<NewCityPage />} />
           <Route path="/add-customer" element={<NewCustomerPage />} />
+          <Route path="/add-tank" element={<NewTankPage />} />
           <Route path="/add-employee" element={<NewEmployeePage />} />
           <Route path="/customers" element={<CustomersPage />} />
           <Route
