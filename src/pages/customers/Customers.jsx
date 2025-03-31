@@ -84,6 +84,12 @@ const Customers = () => {
         accessorKey: "phone",
       },
       {
+        id: "tanks",
+        header: "Tanks Count",
+        accessorKey: "tanks",
+        Cell: ({ row }) => <span>{row.original.tanks?.length || 0}</span>,
+      },
+      {
         id: "actions",
         header: "Actions",
         accessorKey: "id",
