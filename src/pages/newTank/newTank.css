@@ -1,0 +1,42 @@
+.new_tank_form_row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.new_tank_form_row .col {
+  background: #242526;
+  padding: 20px;
+  min-height: 300px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.span-2 {
+  grid-column: span 2;
+}
+.span-3 {
+  grid-column: span 3;
+}
+.row_span-2 {
+  grid-row: span 2;
+}
+.span-4 {
+  grid-column: span 4;
+}
+.col h4 {
+  margin-bottom: 20px;
+}
+.new_tank_form_row .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.new_tank_form_row .inputs input {
+  background: #3a3b3c;
+  color: #fff;
+  border: 0;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+}
