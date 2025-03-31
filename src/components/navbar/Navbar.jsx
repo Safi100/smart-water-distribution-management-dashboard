@@ -138,7 +138,7 @@ function Navbar() {
                     <a href={"/add-city"}>Add city</a>
                   </MenuItem>
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <a href={"/add-tanl"}>Add tank</a>
+                    <a href={"/add-tank"}>Add tank</a>
                   </MenuItem>
                   <MenuItem onClick={handleCloseNavMenu}>
                     <a href={"/add-employee"}>Add employee</a>
