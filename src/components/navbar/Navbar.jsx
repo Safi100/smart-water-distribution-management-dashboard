@@ -261,7 +261,7 @@ function Navbar() {
                 >
                   <MenuItem onClick={handleCloseUserMenu}>
                     <a
-                      href={`/admin-profile/${currentUser._id}`}
+                      href={`/employee-profile/${currentUser._id}`}
                       style={{ display: "flex", alignItems: "center" }}
                     >
                       <Avatar /> Profile
