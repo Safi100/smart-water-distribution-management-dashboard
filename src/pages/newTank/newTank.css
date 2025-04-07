@@ -3,6 +3,25 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
+
+@media (max-width: 1024px) {
+  .new_tank_form_row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .new_tank_form_row .col {
+    grid-column: unset !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .new_tank_form_row {
+    grid-template-columns: 1fr;
+  }
+  .new_tank_form_row .col {
+    grid-column: unset !important;
+  }
+}
+
 .new_tank_form_row .col {
   background: #242526;
   padding: 20px;
@@ -12,27 +31,35 @@
   flex-direction: column;
   gap: 10px;
 }
+
 .span-2 {
   grid-column: span 2;
 }
+
 .span-3 {
   grid-column: span 3;
 }
+
 .row_span-2 {
   grid-row: span 2;
 }
+
 .span-4 {
   grid-column: span 4;
 }
+
 .col h4 {
   margin-bottom: 20px;
 }
+
 .new_tank_form_row .inputs {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
 }
-.new_tank_form_row .inputs input {
+
+.new_tank_form_row .inputs input,
+.new_tank_form_row .inputs select {
   background: #3a3b3c;
   color: #fff;
   border: 0;
