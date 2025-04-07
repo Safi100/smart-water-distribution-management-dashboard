@@ -186,7 +186,7 @@ const NewTank = () => {
             <h4>Tank info</h4>
             <div className="inputs">
               <div className="row gy-4">
-                <div className="input_div col-12 md-col-6">
+                <div className="input_div col-12 col-md-6">
                   <label className="mb-2">Customer</label>
                   <Select
                     options={customers}
@@ -197,7 +197,7 @@ const NewTank = () => {
                     required
                   />
                 </div>
-                <div className="input_div col-12 md-col-6">
+                <div className="input_div col-12 col-md-6">
                   <label className="mb-2">City</label>
                   <Select
                     options={cities}
@@ -212,7 +212,7 @@ const NewTank = () => {
               <div className="input_div">
                 <label className="mb-3">Coordinates</label>
                 <div className="row gy-4">
-                  <div className="col-12 md-col-6">
+                  <div className="col-12 col-md-6">
                     <label className="mb-2" htmlFor="latitude">
                       Latitude
                     </label>
@@ -226,7 +226,7 @@ const NewTank = () => {
                       required
                     />
                   </div>
-                  <div className="col-12 md-col-6">
+                  <div className="col-12 col-md-6">
                     <label className="mb-2" htmlFor="longitude">
                       Longitude
                     </label>
