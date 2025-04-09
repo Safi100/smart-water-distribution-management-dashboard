@@ -8,6 +8,8 @@ const Dashboard = () => {
     totalCustomers: 0,
     totalDistributors: 0,
     totalCities: 0,
+    totalPaidBills: 0,
+    totalUnPaidBills: 0,
   });
   useEffect(() => {
     axios
@@ -24,16 +26,24 @@ const Dashboard = () => {
     <div className="wrapper py-4">
       <div className="dashboard_row">
         <a href="/customers" className="dashboard_data_div">
-          <h2>Total customers</h2>
-          <p className="mt-3 fw-bold fs-3">{data.totalCustomers}</p>
+          <h4>Total customers</h4>
+          <p className="mt-3 fw-bold fs-4">{data.totalCustomers}</p>
         </a>
         <a href="/employees" className="dashboard_data_div">
-          <h2>Total empyloyees</h2>
-          <p className="mt-3 fw-bold fs-3">{data.totalEmployees}</p>
+          <h4>Total empyloyees</h4>
+          <p className="mt-3 fw-bold fs-4">{data.totalEmployees}</p>
         </a>
         <a href="/cities" className="dashboard_data_div">
-          <h2>Total cities</h2>
-          <p className="mt-3 fw-bold fs-3">{data.totalCities}</p>
+          <h4>Total cities</h4>
+          <p className="mt-3 fw-bold fs-4">{data.totalCities}</p>
+        </a>
+        <a href="/bills?status=paid" className="dashboard_data_div">
+          <h4>Total paid bills</h4>
+          <p className="mt-3 fw-bold fs-4">{data.totalPaidBills}</p>
+        </a>
+        <a href="/bills?status=unpaid" className="dashboard_data_div">
+          <h4>Total unpaid bills</h4>
+          <p className="mt-3 fw-bold fs-4">{data.totalUnPaidBills}</p>
         </a>
       </div>
     </div>
