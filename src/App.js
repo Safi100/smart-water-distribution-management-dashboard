@@ -27,6 +27,7 @@ const TankProfilePage = lazy(() => import("./pages/TankProfile/TankProfile"));
 const NewCustomerPage = lazy(() => import("./pages/newCustomer/NewCustomer"));
 const NewEmployeePage = lazy(() => import("./pages/newEmployee/NewEmployee"));
 const NewTankPage = lazy(() => import("./pages/newTank/NewTank"));
+const BillsPage = lazy(() => import("./pages/bills/Bills"));
 const CustomerProfilePage = lazy(() =>
   import("./pages/customerProfile/CustomerProfile")
 );
@@ -68,6 +69,7 @@ function App() {
           <Route path="/add-tank" element={<NewTankPage />} />
           <Route path="/add-employee" element={<NewEmployeePage />} />
           <Route path="/customers" element={<CustomersPage />} />
+          <Route path="/bills" element={<BillsPage />} />
           <Route
             path="/employees"
             element={<EmployeePage currentUser={currentUser} />}
