@@ -1,6 +1,6 @@
 .dashboard_row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Default: 3 equal columns */
+  grid-template-columns: repeat(4, 1fr); /* Default: 3 equal columns */
   gap: 24px;
   margin-bottom: 20px;
 }
