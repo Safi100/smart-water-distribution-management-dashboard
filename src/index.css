@@ -30,3 +30,47 @@ a {
   color: #fff;
   text-decoration: none;
 }
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .navbar_container {
+    display: none !important;
+  }
+
+  .print-button {
+    display: none !important;
+  }
+
+  .card {
+    background-color: white !important;
+    box-shadow: none !important;
+    color: black !important;
+  }
+
+  .header h1 {
+    color: #0066cc !important;
+  }
+
+  .header p {
+    color: #333 !important;
+  }
+
+  h2,
+  label,
+  span {
+    color: black !important;
+  }
+
+  .text-red {
+    color: #cc0000 !important;
+  }
+
+  .text-green {
+    color: #007700 !important;
+  }
+}
