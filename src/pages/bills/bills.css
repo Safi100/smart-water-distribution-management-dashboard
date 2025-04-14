@@ -1,0 +1,101 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #242526;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+  border-bottom: 2px solid #444;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  color: #61dafb;
+}
+
+.header p {
+  color: #aaa;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: #ccc;
+}
+
+span {
+  display: block;
+  margin-top: 2px;
+  color: #fff;
+}
+
+.text-red {
+  color: #e57373;
+  font-weight: bold;
+}
+
+.text-green {
+  color: #81c784;
+  font-weight: bold;
+}
+
+.print-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.print-button:hover {
+  background-color: #45a049;
+}
+
+/* Print-specific styles */
+@media print {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card {
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .grid {
+    page-break-inside: avoid;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
+}
