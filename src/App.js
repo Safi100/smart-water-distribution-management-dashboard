@@ -28,6 +28,7 @@ const NewCustomerPage = lazy(() => import("./pages/newCustomer/NewCustomer"));
 const NewEmployeePage = lazy(() => import("./pages/newEmployee/NewEmployee"));
 const NewTankPage = lazy(() => import("./pages/newTank/NewTank"));
 const BillsPage = lazy(() => import("./pages/bills/Bills"));
+const BillProfilePage = lazy(() => import("./pages/bills/Bill_Profile"));
 const CustomerProfilePage = lazy(() =>
   import("./pages/customerProfile/CustomerProfile")
 );
@@ -75,6 +76,7 @@ function App() {
             element={<EmployeePage currentUser={currentUser} />}
           />
           <Route path="/cities" element={<CitiesPage />} />
+          <Route path="/bill/:id" element={<BillProfilePage />} />
           <Route
             path="/employee-profile/:id"
             element={<AdminProfilePage currentUser={currentUser} />}
