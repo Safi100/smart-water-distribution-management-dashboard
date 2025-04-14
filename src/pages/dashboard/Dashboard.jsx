@@ -37,11 +37,11 @@ const Dashboard = () => {
           <h4>Total cities</h4>
           <p className="mt-3 fw-bold fs-4">{data.totalCities}</p>
         </a>
-        <a href="/bills?status=paid" className="dashboard_data_div">
+        <a href="/bills?status=Paid" className="dashboard_data_div">
           <h4>Total paid bills</h4>
           <p className="mt-3 fw-bold fs-4">{data.totalPaidBills}</p>
         </a>
-        <a href="/bills?status=unpaid" className="dashboard_data_div">
+        <a href="/bills?status=Unpaid" className="dashboard_data_div">
           <h4>Total unpaid bills</h4>
           <p className="mt-3 fw-bold fs-4">{data.totalUnPaidBills}</p>
         </a>
