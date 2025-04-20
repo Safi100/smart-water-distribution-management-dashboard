@@ -45,7 +45,17 @@
   .tank_profile_info .map-container {
     width: 100%;
   }
+
+  .tank_profile_tank_info {
+    flex-direction: column;
+  }
+
+  .chart-container,
+  .tank-visual-container {
+    width: 100%;
+  }
 }
+
 @media (max-width: 768px) {
   .title {
     font-size: 20px;
@@ -54,29 +64,148 @@
   .details p {
     font-size: 14px;
   }
+
+  .chart-wrapper {
+    height: 350px;
+  }
+
+  .usage-stats {
+    grid-template-columns: 1fr;
+  }
 }
+
 @media (max-width: 480px) {
   .title {
     font-size: 18px;
   }
+
   .details p {
     font-size: 13px;
+  }
+
+  .chart-wrapper {
+    height: 300px;
+    padding: 15px 10px;
+  }
+
+  .chart-wrapper h3 {
+    font-size: 16px;
+  }
+
+  .stat-value {
+    font-size: 20px;
   }
 }
 .tank_profile_tank_info {
   margin: 30px 0;
   display: flex;
   gap: 30px;
+  flex-wrap: wrap;
 }
+
 .tank_profile_tank_info > div,
 .tank_profile_tank_family {
   background: #242526;
-  width: 100%;
   border-radius: 8px;
   padding: 20px;
 }
+
+.tank-visual-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 300px;
+  flex: 0 0 300px;
+}
+
+.tank-stats {
+  background: #3a3b3c;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.tank-stats h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #fff;
+  text-align: center;
+}
+
+.tank-stats p {
+  margin-bottom: 10px;
+  color: #ddd;
+}
+
 .tank_profile_tank_info .tank_container {
   max-width: 500px;
+}
+
+/* Chart styles */
+.chart-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.water-usage-charts {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.chart-wrapper {
+  background: #3a3b3c;
+  border-radius: 8px;
+  padding: 20px;
+  height: 400px;
+}
+
+.chart-wrapper h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #fff;
+  text-align: center;
+}
+
+.usage-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-item {
+  background: #3a3b3c;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+}
+
+.stat-item h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #61dafb;
+}
+
+.stat-unit {
+  font-size: 16px;
+  color: #aaa;
+}
+
+.no-data-message {
+  background: #3a3b3c;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  color: #aaa;
+}
+
+.mt-4 {
+  margin-top: 20px;
 }
 .family_members_div {
   display: flex;
