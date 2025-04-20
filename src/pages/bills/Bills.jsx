@@ -107,11 +107,6 @@ const Bills = () => {
         accessorFn: (row) => row.amount,
       },
       {
-        id: "fees",
-        header: "Fees",
-        accessorFn: (row) => `${row.fees}%`,
-      },
-      {
         id: "billing_date",
         header: "Billing Date",
         accessorFn: (row) => {
