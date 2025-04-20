@@ -244,7 +244,7 @@ const BillProfile = () => {
             </div>
             <div>
               <label>Amount:</label>
-              <span>{bill.amount} units</span>
+              <span>{bill.amount} Liter</span>
             </div>
             <div>
               <label>Price:</label>
