@@ -8,6 +8,8 @@
     "@lottiefiles/dotlottie-react": "^0.13.0",
     "@mui/icons-material": "^6.4.4",
     "@mui/material": "^6.4.4",
+    "@stripe/react-stripe-js": "^3.6.0",
+    "@stripe/stripe-js": "^7.1.0",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "framer-motion": "^12.4.7",
