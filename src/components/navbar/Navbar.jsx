@@ -135,6 +135,9 @@ function Navbar() {
                     <a href={"/"}>Home</a>
                   </MenuItem>
                   <MenuItem onClick={handleCloseNavMenu}>
+                    <a href={"/bills?status=All"}>Bills</a>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseNavMenu}>
                     <a href={"/add-city"}>Add city</a>
                   </MenuItem>
                   <MenuItem onClick={handleCloseNavMenu}>
