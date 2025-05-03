@@ -61,6 +61,13 @@ const TankProfile = () => {
 
   return (
     <div className="wrapper tank_profile py-4">
+      <div className="tank-profile-header">
+        <h1>Tank Details</h1>
+        <a href={`/update-tank/${id}`} className="edit-tank-btn">
+          ✏️ Edit Tank
+        </a>
+      </div>
+
       <div className="tank_profile_info">
         <div className="tank_details">
           <h2 className="title">Tank Information</h2>

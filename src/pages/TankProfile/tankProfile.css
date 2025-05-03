@@ -1,3 +1,37 @@
+.tank-profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.tank-profile-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #fff;
+}
+
+.edit-tank-btn {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.edit-tank-btn:hover {
+  background-color: #0d8bf2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  text-decoration: none;
+}
+
 .tank_profile_info {
   padding: 20px;
   border-radius: 8px;
@@ -71,6 +105,17 @@
 
   .usage-stats {
     grid-template-columns: 1fr;
+  }
+
+  .tank-profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .edit-tank-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
