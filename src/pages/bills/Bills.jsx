@@ -102,9 +102,12 @@ const Bills = () => {
         accessorKey: "status",
       },
       {
-        id: "letter_amount_used",
+        accessorKey: "amount",
         header: "Letter Amount Used",
-        accessorFn: (row) => row.amount,
+        Cell: ({ cell }) => {
+          const value = cell.getValue();
+          return typeof value === "number" ? value.toFixed(2) : "0.00";
+        },
       },
       {
         id: "billing_date",
@@ -117,9 +120,12 @@ const Bills = () => {
         },
       },
       {
-        id: "total",
+        accessorKey: "total_price",
         header: "Total (₪)",
-        accessorFn: (row) => row.total_price.toFixed(2),
+        Cell: ({ cell }) => {
+          const value = cell.getValue();
+          return typeof value === "number" ? value.toFixed(2) : "0.00";
+        },
       },
       {
         id: "actions",
