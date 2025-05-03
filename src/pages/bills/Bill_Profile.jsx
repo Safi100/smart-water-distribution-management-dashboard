@@ -183,6 +183,21 @@ const BillProfile = () => {
     );
   }
 
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   return (
     <div className="container wrapper py-4">
       <ToastContainer />
@@ -226,12 +241,9 @@ const BillProfile = () => {
           <h2>Billing Details</h2>
           <div className="grid">
             <div>
-              <label>Bill release date:</label>
+              <label>Bill date:</label>
               <span>
-                {new Date(bill.createdAt).toLocaleDateString("en-US", {
-                  month: "long",
-                  year: "numeric",
-                })}
+                {monthNames[bill.month - 1]} {bill.year}
               </span>
             </div>
             <div>
@@ -248,7 +260,7 @@ const BillProfile = () => {
             </div>
             <div>
               <label>Price:</label>
-              <span>${bill.price_for_letters?.toFixed(2)}</span>
+              <span>₪ {bill.price_for_letters?.toFixed(2)}</span>
             </div>
             <div>
               <label>Fees:</label>
@@ -256,7 +268,7 @@ const BillProfile = () => {
             </div>
             <div>
               <label>Total:</label>
-              <span>${bill.total_price.toFixed(2)}</span>
+              <span>₪ {bill.total_price.toFixed(2)}</span>
             </div>
           </div>
         </section>
