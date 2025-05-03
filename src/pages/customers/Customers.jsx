@@ -84,10 +84,10 @@ const Customers = () => {
         accessorKey: "phone",
       },
       {
-        id: "tanks",
+        id: "tanks_count",
         header: "Tanks Count",
-        accessorKey: "tanks",
-        Cell: ({ row }) => <span>{row.original.tanks?.length || 0}</span>,
+        accessorFn: (row) => row.tanks?.length || 0, // numeric value for sorting
+        Cell: ({ cell }) => <span>{cell.getValue()}</span>, // display value
       },
       {
         id: "actions",
