@@ -125,6 +125,30 @@ const Dashboard = () => {
                     <strong>Current Level:</strong> {mainTank.current_level}{" "}
                     liters
                   </p>
+                  <button
+                    className="read-value-btn"
+                    onClick={() => {
+                      axios
+                        .get(
+                          `http://localhost:8000/api/tank/main-tank-value-ultrasonic/${mainTank._id}`
+                        )
+                        .then((res) => {
+                          console.log("Ultrasonic value:", res.data);
+                          // Handle the response here
+                          // Assuming res.data contains the new current_level value
+                          const updatedTank = {
+                            ...mainTank,
+                            current_level: res.data.estimated_volume_liters, // Or however the data is structured
+                          };
+                          setMainTank(updatedTank);
+                        })
+                        .catch((err) => {
+                          console.error("Error reading ultrasonic value:", err);
+                        });
+                    }}
+                  >
+                    📡 Read Value
+                  </button>
                 </div>
               </div>
               <div className="tank-visual">
