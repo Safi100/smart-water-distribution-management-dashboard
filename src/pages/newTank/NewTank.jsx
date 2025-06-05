@@ -18,7 +18,8 @@ const NewTank = () => {
       radius: "",
     },
     hardware: {
-      ultrasonic_sensor: "",
+      ultrasonic_sensor_trig: "",
+      ultrasonic_sensor_echo: "",
       waterflow_sensor: "",
       solenoid_valve: "",
       lcd_scl: "",
@@ -147,7 +148,12 @@ const NewTank = () => {
           radius: parseFloat(formData.tank_size.radius),
         },
         hardware: {
-          ultrasonic_sensor: parseInt(formData.hardware.ultrasonic_sensor),
+          ultrasonic_sensor_trig: parseInt(
+            formData.hardware.ultrasonic_sensor_trig
+          ),
+          ultrasonic_sensor_echo: parseInt(
+            formData.hardware.ultrasonic_sensor_echo
+          ),
           waterflow_sensor: parseInt(formData.hardware.waterflow_sensor),
           solenoid_valve: parseInt(formData.hardware.solenoid_valve),
           lcd_scl: parseInt(formData.hardware.lcd_scl),
@@ -279,15 +285,30 @@ const NewTank = () => {
             <h4>Tank hardware (GPIO)</h4>
             <div className="inputs">
               <div className="input_div">
-                <label className="mb-2" htmlFor="ultrasonic">
-                  Ultrasonic sensor
+                <label className="mb-4">Ultrasonic sensor</label>
+                <div className="mb-3">
+                  <label className="mb-2" htmlFor="ultrasonic_trig">
+                    TRIG Pin
+                  </label>
+                  <input
+                    className="mb-2"
+                    type="number"
+                    id="ultrasonic_trig"
+                    name="hardware.ultrasonic_sensor_trig"
+                    placeholder="Enter GPIO number"
+                    value={formData.hardware.ultrasonic_sensor_trig || ""}
+                    onChange={handleFormChange}
+                  />
+                </div>
+                <label className="mb-2" htmlFor="ultrasonic_echo">
+                  ECHO Pin
                 </label>
                 <input
                   type="number"
-                  id="ultrasonic"
-                  name="hardware.ultrasonic_sensor"
+                  id="ultrasonic_echo"
+                  name="hardware.ultrasonic_sensor_echo"
                   placeholder="Enter GPIO number"
-                  value={formData.hardware.ultrasonic_sensor || ""}
+                  value={formData.hardware.ultrasonic_sensor_echo || ""}
                   onChange={handleFormChange}
                 />
               </div>
