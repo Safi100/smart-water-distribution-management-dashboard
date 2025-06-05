@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import "./waterTank.css"; // Import external CSS
 
 const WaterTank = ({ maxCapacity, currentLevel }) => {
-  const levelPercentage = Math.min((currentLevel / maxCapacity) * 100, 100);
-
+  const levelPercentage =
+    maxCapacity > 0 && Number.isFinite(currentLevel)
+      ? Math.min((currentLevel / maxCapacity) * 100, 100)
+      : 0;
   return (
     <div className="tank_container">
       <div className="tank">

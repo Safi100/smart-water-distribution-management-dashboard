@@ -125,7 +125,9 @@ const TankProfile = () => {
             </p>
             <p>
               <strong>Fill Percentage:</strong>{" "}
-              {((tank.current_level / tank.max_capacity) * 100).toFixed(1)}%
+              {(tank.max_capacity > 0
+                ? ((tank.current_level / tank.max_capacity) * 100).toFixed(1)
+                : "0.") + "%"}{" "}
             </p>
             {tank.last_water_usage && (
               <>
