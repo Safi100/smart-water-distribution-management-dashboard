@@ -1,64 +1,557 @@
+/* New City Page Styles */
+.new-city-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Section */
+.city-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  border-radius: 20px;
+  margin-bottom: 32px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.city-form-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #fff;
+}
+
+.city-form-subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.header-illustration {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.city-building {
+  width: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px 4px 0 0;
+  animation: buildingGrow 2s ease-in-out infinite;
+}
+
+.city-building:nth-child(1) {
+  height: 60px;
+  animation-delay: 0s;
+}
+
+.city-building:nth-child(2) {
+  height: 80px;
+  animation-delay: 0.3s;
+}
+
+.city-building:nth-child(3) {
+  height: 50px;
+  animation-delay: 0.6s;
+}
+
+@keyframes buildingGrow {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.1);
+  }
+}
+
+/* Main Content */
+.city-form-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+/* Form Card */
+.city-form-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+.city-form-card-header {
+  padding: 32px 32px 24px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.city-form-card-header h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.city-form-card-header p {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* City Form */
+.city-form {
+  padding: 32px;
+}
+
+.city-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.city-form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.label-icon {
+  font-size: 16px;
+}
+
+.label-text {
+  flex: 1;
+}
+
+.required-indicator {
+  color: #f44336;
+  font-weight: 700;
+}
+
+/* Input Wrapper */
+.city-input-wrapper {
+  position: relative;
+}
+
+.city-form-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #fff;
+  transition: all 0.3s ease;
+  outline: none;
+  color: #333;
+}
+
+.city-form-input:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+}
+
+.city-form-input:focus + .city-input-border {
+  transform: scaleX(1);
+}
+
+.city-input-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff9800, #f57c00);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  border-radius: 0 0 12px 12px;
+}
+
+.city-input-helper {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Form Actions */
+.city-form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.city-btn-primary,
+.city-btn-secondary {
+  padding: 16px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.city-btn-primary {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+  border: 2px solid transparent;
+}
+
+.city-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(255, 152, 0, 0.3);
+}
+
+.city-btn-primary:disabled {
+  background: #ffcc80;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+.city-btn-secondary {
+  background: #fff;
+  color: #666;
+  border: 2px solid #e0e0e0;
+}
+
+.city-btn-secondary:hover {
+  background: #f5f5f5;
+  border-color: #bdbdbd;
+  color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading Content */
+.city-loading-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.city-loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: citySpinnerSpin 1s linear infinite;
+}
+
+@keyframes citySpinnerSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Info Section */
+.city-info-section {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid #e0e0e0;
+}
+
+.city-info-section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 24px 0;
+}
+
+.city-info-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.city-info-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 4px 0;
+}
+
+.step-content p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Features Cards */
+.city-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.city-feature-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.city-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 152, 0, 0.2);
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.city-feature-card h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 12px 0;
+}
+
+.city-feature-card p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .new-city-container {
+    padding: 16px;
+  }
+
+  .city-form-header {
+    padding: 32px 24px;
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .city-form-title {
+    font-size: 28px;
+  }
+
+  .city-form-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .city-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .city-form-header {
+    padding: 24px 20px;
+  }
+
+  .city-form-title {
+    font-size: 24px;
+  }
+
+  .city-form-subtitle {
+    font-size: 14px;
+  }
+
+  .header-illustration {
+    display: none;
+  }
+
+  .city-form-card-header {
+    padding: 24px 20px 20px;
+  }
+
+  .city-form-card-header h3 {
+    font-size: 20px;
+  }
+
+  .city-form {
+    padding: 24px 20px;
+  }
+
+  .city-form-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .city-btn-primary,
+  .city-btn-secondary {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .city-info-section {
+    padding: 24px 20px;
+  }
+
+  .city-info-steps {
+    gap: 16px;
+  }
+
+  .city-features {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .city-feature-card {
+    padding: 20px;
+  }
+
+  .feature-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .city-feature-card h4 {
+    font-size: 16px;
+  }
+
+  .city-feature-card p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-city-container {
+    padding: 12px;
+  }
+
+  .city-form-header {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .city-form-title {
+    font-size: 20px;
+  }
+
+  .city-form-card {
+    border-radius: 12px;
+  }
+
+  .city-form-card-header {
+    padding: 20px 16px 16px;
+  }
+
+  .city-form {
+    padding: 20px 16px;
+  }
+
+  .city-form-input {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+
+  .city-btn-primary,
+  .city-btn-secondary {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  .city-info-section {
+    padding: 20px 16px;
+  }
+
+  .city-info-section h3 {
+    font-size: 18px;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .step-content h4 {
+    font-size: 14px;
+  }
+
+  .step-content p {
+    font-size: 13px;
+  }
+
+  .city-feature-card {
+    padding: 16px;
+  }
+
+  .feature-icon {
+    font-size: 36px;
+  }
+}
+
+/* Legacy support for old class names */
 .new_city_row .form_container {
   width: 90%;
   max-width: 350px;
   margin: 0 auto;
 }
+
 .new_city_row .auth_heading {
   font-size: 24px;
   color: #f0f6fc;
   font-weight: 300;
   margin-bottom: 16px;
   text-align: center;
-}
-.new_city_row form {
-  background: #242526;
-  color: #f0f6fc;
-  border: 1px solid #3d444db3;
-  padding: 16px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-.new_city_row form .input_div {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
-}
-.new_city_row form input {
-  width: 100%;
-  padding: 5px 12px;
-  background-color: #0d1117 !important;
-  border: 1px solid #3d444d;
-  font-size: 14px;
-  line-height: 20px;
-  color: #f0f6fc;
-  border-radius: 5px;
-  margin-top: 8px;
-}
-.new_city_row a {
-  color: #4493f8;
-  font-size: 12px;
-}
-.new_city_row form input:-webkit-autofill {
-  /* -webkit-box-shadow: 0 0 0px 1000px #0d1117 inset !important; */
-  /* box-shadow: 0 0 0px 1000px #0d1117 inset !important; */
-
-  background-color: #0d1117 !important;
-  -webkit-text-fill-color: #f0f6fc !important; /* Ensures the text color stays #f0f6fc */
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-.new_city_row form input:-webkit-autofill:focus {
-  /* -webkit-box-shadow: 0 0 0px 1000px #0d1117 inset !important; */
-  /* box-shadow: 0 0 0px 1000px #0d1117 inset !important; */
-  box-shadow: inset 0 0 0 1px #1f6feb;
-  border-color: #1f6feb;
-  background-color: #0d1117 !important;
-  -webkit-text-fill-color: #f0f6fc !important;
-}
-
-.new_city_row form input:focus-visible {
-  border-color: #1f6feb;
-  /* border: 1px solid #1f6feb; */
-  outline: none;
-  box-shadow: inset 0 0 0 1px #1f6feb;
 }
