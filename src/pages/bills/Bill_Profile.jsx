@@ -18,7 +18,7 @@ const stripePromise = loadStripe(
 );
 
 // Payment form component
-const PaymentFormContent = ({ onCancel, onPaymentSuccess }) => {
+const PaymentFormContent = ({ onCancel, onPaymentSuccess, billAmount }) => {
   const { id } = useParams();
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -75,27 +75,66 @@ const PaymentFormContent = ({ onCancel, onPaymentSuccess }) => {
 
   return (
     <div className="payment-modal">
-      <h3>Complete Your Payment</h3>
-      <form onSubmit={handleSubmit}>
-        <PaymentElement />
-        <div className="payment-actions">
-          <button
-            type="submit"
-            disabled={!stripe || isProcessing}
-            className="confirm-payment-btn"
-          >
-            {isProcessing ? "Processing..." : "Confirm Payment"}
-          </button>
-          <button
-            type="button"
-            className="cancel-payment-btn"
-            onClick={onCancel}
-            disabled={isProcessing}
-          >
-            Cancel
-          </button>
+      {/* Payment Modal Header */}
+      <div className="payment-modal-header">
+        <h3>💳 Complete Your Payment</h3>
+        <p className="payment-modal-subtitle">
+          Secure payment powered by Stripe
+        </p>
+      </div>
+
+      {/* Payment Modal Body */}
+      <div className="payment-modal-body">
+        {/* Payment Summary */}
+        <div className="payment-summary-card">
+          <h4 className="payment-summary-title">Payment Summary</h4>
+          <div className="payment-amount">
+            <span className="payment-amount-label">Total Amount:</span>
+            <span className="payment-amount-value">₪ {billAmount}</span>
+          </div>
         </div>
-      </form>
+
+        {/* Security Note */}
+        <div className="payment-security-note">
+          <span>🔒</span>
+          <span>Your payment information is secure and encrypted</span>
+        </div>
+
+        {/* Payment Form */}
+        <form onSubmit={handleSubmit}>
+          <PaymentElement />
+
+          <div className="payment-actions">
+            <button
+              type="submit"
+              disabled={!stripe || isProcessing}
+              className="confirm-payment-btn"
+            >
+              {isProcessing ? (
+                <div className="payment-processing">
+                  <div className="payment-spinner"></div>
+                  <span>Processing...</span>
+                </div>
+              ) : (
+                <>
+                  <span>💳</span>
+                  <span>Pay ₪ {billAmount}</span>
+                </>
+              )}
+            </button>
+
+            <button
+              type="button"
+              className="cancel-payment-btn"
+              onClick={onCancel}
+              disabled={isProcessing}
+            >
+              <span>✕</span>
+              <span>Cancel</span>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
@@ -200,96 +239,167 @@ const BillProfile = () => {
   ];
 
   return (
-    <div className="container wrapper py-4">
+    <div className="bill-container">
       <ToastContainer />
-      <div className="card">
-        <div className="header">
-          <h1>Water Bill</h1>
-          <p>Bill ID: {bill._id}</p>
+
+      {/* Invoice Header */}
+      <div className="invoice-wrapper">
+        <div className="invoice-header">
+          <div className="company-info">
+            <h1 className="company-name">💧 AquaFlow Systems</h1>
+            <p className="company-tagline">Water Management Solutions</p>
+            <div className="company-details">
+              <p>📍 123 Water Street, Ramallah, Palestine</p>
+              <p>📞 +970-59-248-1601 | 📧 safinafi12@gmail.com</p>
+            </div>
+          </div>
+          <div className="invoice-meta">
+            <div className="invoice-title">
+              <h2>WATER BILL</h2>
+              <div className={`status-badge ${bill.status.toLowerCase()}`}>
+                {bill.status}
+              </div>
+            </div>
+            <div className="invoice-details">
+              <div className="detail-row">
+                <span className="label">Invoice #:</span>
+                <span className="value">
+                  {bill._id.slice(-8).toUpperCase()}
+                </span>
+              </div>
+              <div className="detail-row">
+                <span className="label">Issue Date:</span>
+                <span className="value">
+                  {new Date(bill.createdAt).toLocaleDateString()}
+                </span>
+              </div>
+              <div className="detail-row">
+                <span className="label">Due Date:</span>
+                <span className="value">
+                  {new Date(
+                    new Date(bill.createdAt).getTime() +
+                      30 * 24 * 60 * 60 * 1000
+                  ).toLocaleDateString()}
+                </span>
+              </div>
+              <div className="detail-row">
+                <span className="label">Period:</span>
+                <span className="value">
+                  {monthNames[bill.month - 1]} {bill.year}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <section>
-          <h2>Customer Information</h2>
-          <div className="grid">
-            <div>
-              <label>Name:</label>
-              <span
-                role="button"
-                className="cursor-pointer"
-                onClick={() =>
-                  (window.location.href = `/customer/${bill.customer?._id}`)
-                }
-              >
-                {bill.customer?.name}
-              </span>
-            </div>
-            <div>
-              <label>ID Number:</label>
-              <span>{bill.customer?.identity_number}</span>
-            </div>
-            <div>
-              <label>Email:</label>
-              <span>{bill.customer?.email}</span>
-            </div>
-            <div>
-              <label>Phone:</label>
-              <span>{bill.customer?.phone}</span>
+        {/* Bill To Section */}
+        <div className="bill-to-section">
+          <div className="bill-to">
+            <h3>Bill To:</h3>
+            <div className="customer-info">
+              <p className="customer-name">{bill.customer?.name}</p>
+              <p>ID: {bill.customer?.identity_number}</p>
+              <p>📧 {bill.customer?.email}</p>
+              <p>📞 {bill.customer?.phone}</p>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section>
-          <h2>Billing Details</h2>
-          <div className="grid">
-            <div>
-              <label>Bill date:</label>
+        {/* Usage Summary */}
+        <div className="usage-summary">
+          <h3>💧 Water Usage Summary</h3>
+          <div className="usage-table">
+            <div className="usage-row header">
+              <span>Description</span>
+              <span>Quantity</span>
+              <span>Rate</span>
+              <span>Amount</span>
+            </div>
+            <div className="usage-row">
+              <span>Water Consumption</span>
+              <span>{bill.amount} Liters</span>
               <span>
-                {monthNames[bill.month - 1]} {bill.year}
+                ₪ {(bill.price_for_letters / bill.amount).toFixed(3)}/L
               </span>
-            </div>
-            <div>
-              <label>Status:</label>
-              <span
-                className={bill.status === "Unpaid" ? "text-red" : "text-green"}
-              >
-                {bill.status}
-              </span>
-            </div>
-            <div>
-              <label>Amount:</label>
-              <span>{bill.amount} Liter</span>
-            </div>
-            <div>
-              <label>Price:</label>
               <span>₪ {bill.price_for_letters?.toFixed(2)}</span>
             </div>
-            <div>
-              <label>Fees:</label>
-              <span>{bill.fees.toFixed(2)}%</span>
-            </div>
-            <div>
-              <label>Total:</label>
-              <span>₪ {bill.total_price.toFixed(2)}</span>
+            <div className="usage-row">
+              <span>Service Fee ({bill.fees.toFixed(1)}%)</span>
+              <span>-</span>
+              <span>-</span>
+              <span>
+                ₪ {(bill.total_price - bill.price_for_letters).toFixed(2)}
+              </span>
             </div>
           </div>
-        </section>
+        </div>
+
+        {/* Payment Summary */}
+        <div className="payment-summary">
+          <div className="summary-row">
+            <span>Subtotal:</span>
+            <span>₪ {bill.price_for_letters?.toFixed(2)}</span>
+          </div>
+          <div className="summary-row">
+            <span>Service Fee:</span>
+            <span>
+              ₪ {(bill.total_price - bill.price_for_letters).toFixed(2)}
+            </span>
+          </div>
+          <div className="summary-row total">
+            <span>Total Amount Due:</span>
+            <span>₪ {bill.total_price.toFixed(2)}</span>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="invoice-footer">
+          <div className="footer-note">
+            <p>
+              <strong>Note:</strong> Please pay by the due date to avoid service
+              interruption.
+            </p>
+            <p>
+              For questions about this bill, contact us at safinafi12@gmail.com
+              or call +970-59-248-1601
+            </p>
+          </div>
+          <div className="footer-legal">
+            <p>
+              Thank you for choosing AquaFlow Systems for your water management
+              needs.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <section className="btn_section">
-        <button className="print-button" onClick={() => window.print()}>
-          🖨️ Print Bill
+      {/* Action Buttons */}
+      <div className="invoice-actions">
+        <button className="action-btn print-btn" onClick={() => window.print()}>
+          🖨️ Print Invoice
+        </button>
+
+        <button
+          className="action-btn download-btn"
+          onClick={() => window.print()}
+        >
+          📄 Download PDF
         </button>
 
         {bill.status === "Unpaid" && !showPaymentForm && (
           <button
-            className="pay-button"
+            className="action-btn pay-btn"
             onClick={pay_bill}
             disabled={isLoading}
           >
-            {isLoading ? "Processing..." : "💳 Pay Bill"}
+            {isLoading ? "⏳ Processing..." : "💳 Pay Now"}
           </button>
         )}
-      </section>
+
+        {bill.status === "Paid" && (
+          <div className="paid-indicator">✅ Payment Completed</div>
+        )}
+      </div>
 
       {/* Payment form overlay */}
       {clientSecret && showPaymentForm && (
@@ -298,6 +408,7 @@ const BillProfile = () => {
             <PaymentFormContent
               onCancel={handleCancelPayment}
               onPaymentSuccess={handlePaymentSuccess}
+              billAmount={bill.total_price.toFixed(2)}
             />
           </Elements>
         </div>
