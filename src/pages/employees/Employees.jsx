@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import { API_BASE_URL } from "../../config/api";
 
 const Employees = ({ currentUser }) => {
   const [employees, setEmployees] = useState([]);
@@ -11,7 +12,7 @@ const Employees = ({ currentUser }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/admin")
+      .get(`${API_BASE_URL}/admin`)
       .then((res) => {
         setEmployees(res.data);
         console.log(res.data);
@@ -30,7 +31,7 @@ const Employees = ({ currentUser }) => {
       return; // User cancelled the deletion
     }
     axios
-      .delete(`http://localhost:8000/api/admin/${id}`)
+      .delete(`${API_BASE_URL}/admin/${id}`)
       .then((res) => {
         console.log("Employee deleted successfully");
         setEmployees(employees.filter((employee) => employee._id !== id));

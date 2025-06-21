@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import WaterTank from "../../components/WaterTank/WaterTank";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 import "./customerProfile.css";
 
 const CustomerProfile = () => {
@@ -9,7 +10,7 @@ const CustomerProfile = () => {
   const [customer, setCustomers] = useState({});
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/customer/${id}`)
+      .get(`${API_BASE_URL}/customer/${id}`)
       .then((res) => {
         setCustomers(res.data);
         console.log(res.data);

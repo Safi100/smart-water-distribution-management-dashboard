@@ -20,6 +20,7 @@ import { stringAvatar } from "../Avatar";
 import Axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 // import { NotificationContext } from "../../context/NotificationContext";
+import { API_BASE_URL } from "../../config/api";
 import "./navbar.css";
 // SEARCH RESULTS DIV
 // import UserSearch from "../search/UserSearch";
@@ -70,7 +71,7 @@ function Navbar() {
   useEffect(() => {
     if (search.length > 0) {
       setLoading(true);
-      Axios.get(`http://localhost:8000/api/search?q=${search}`)
+      Axios.get(`${API_BASE_URL}/search?q=${search}`)
         .then((res) => {
           setSearch_result(res.data);
           console.log(res.data);

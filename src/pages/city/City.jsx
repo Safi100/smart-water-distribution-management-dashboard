@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import mapboxgl from "mapbox-gl";
 import WaterTank from "../../components/WaterTank/WaterTank";
+import { API_BASE_URL } from "../../config/api";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./city.css";
 
@@ -14,7 +15,7 @@ const City = () => {
   // Fetch city data from the API
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/city/${id}`)
+      .get(`${API_BASE_URL}/city/${id}`)
       .then((res) => {
         console.log(res.data);
         setCity(res.data);

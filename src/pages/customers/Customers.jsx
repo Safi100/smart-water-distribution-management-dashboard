@@ -4,6 +4,7 @@ import { MaterialReactTable } from "material-react-table";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
@@ -11,7 +12,7 @@ const Customers = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/customer")
+      .get(`${API_BASE_URL}/customer`)
       .then((res) => {
         setCustomers(res.data);
         console.log(res.data);

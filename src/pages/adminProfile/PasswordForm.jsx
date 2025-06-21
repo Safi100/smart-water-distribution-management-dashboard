@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Notify } from "../../components/Notify";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 import "./adminProfile.css";
 
 const PasswordForm = () => {
@@ -23,10 +24,7 @@ const PasswordForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .patch(
-        `http://localhost:8000/api/admin/update-password`,
-        passwordFormData
-      )
+      .patch(`${API_BASE_URL}/admin/update-password`, passwordFormData)
       .then((res) => {
         Notify("Password updated successfully.");
         e.target.reset();

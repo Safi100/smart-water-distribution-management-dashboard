@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { Notify } from "../../components/Notify";
+import { API_BASE_URL } from "../../config/api";
 import "./newCustomer.css";
 
 const NewCustomer = () => {
@@ -22,7 +23,7 @@ const NewCustomer = () => {
     e.preventDefault();
     setLoading(true);
     axios
-      .post("http://localhost:8000/api/customer", formData)
+      .post(`${API_BASE_URL}/customer`, formData)
       .then((res) => {
         Notify(res.data.message);
         console.log(res.data);

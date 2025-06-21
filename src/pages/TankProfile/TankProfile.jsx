@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { API_BASE_URL } from "../../config/api";
 import "./tankProfile.css"; // Import CSS for styling
 import WaterTank from "../../components/WaterTank/WaterTank";
 import {
@@ -36,7 +37,7 @@ const TankProfile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/tank/${id}`)
+      .get(`${API_BASE_URL}/tank/${id}`)
       .then((res) => {
         setTank(res.data);
         console.log(res.data);

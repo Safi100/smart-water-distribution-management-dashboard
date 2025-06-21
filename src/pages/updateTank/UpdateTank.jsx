@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 import "./updateTank.css";
 
 const UpdateTank = () => {
@@ -37,7 +38,7 @@ const UpdateTank = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:8000/api/tank/${id}`)
+      .get(`${API_BASE_URL}/tank/${id}`)
       .then((res) => {
         const tankData = res.data;
 
@@ -88,7 +89,7 @@ const UpdateTank = () => {
   // Fetch customers and cities
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/customer")
+      .get(`${API_BASE_URL}/customer`)
       .then((res) => {
         const customerOptions = res.data.map((customer) => ({
           value: customer._id,
@@ -109,7 +110,7 @@ const UpdateTank = () => {
       .catch((error) => console.error("Error fetching customers:", error));
 
     axios
-      .get("http://localhost:8000/api/city")
+      .get(`${API_BASE_URL}/city`)
       .then((res) => {
         const cityOptions = res.data.map((city) => ({
           value: city._id,
@@ -248,7 +249,7 @@ const UpdateTank = () => {
 
       setLoading(true);
       axios
-        .put(`http://localhost:8000/api/tank/${id}`, payload)
+        .put(`${API_BASE_URL}/tank/${id}`, payload)
         .then((res) => {
           console.log("Tank updated successfully:", res.data);
           alert("Tank updated ✅");

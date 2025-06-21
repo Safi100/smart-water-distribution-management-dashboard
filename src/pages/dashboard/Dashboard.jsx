@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./dashboard.css";
 import WaterTank from "../../components/WaterTank/WaterTank";
+import { API_BASE_URL } from "../../config/api";
 
 const Dashboard = () => {
   const [data, setData] = useState({
@@ -19,7 +20,7 @@ const Dashboard = () => {
   useEffect(() => {
     // Fetch dashboard data
     axios
-      .get("http://localhost:8000/api/dashboard")
+      .get(`${API_BASE_URL}/dashboard`)
       .then((res) => {
         setData(res.data);
       })
@@ -29,7 +30,7 @@ const Dashboard = () => {
 
     // Fetch main tank data
     axios
-      .get("http://localhost:8000/api/tank/main-tank/67e457e3df743a76a3483d09")
+      .get(`${API_BASE_URL}/tank/main-tank/67e457e3df743a76a3483d09`)
       .then((res) => {
         setMainTank(res.data);
         setLoading(false);
@@ -85,9 +86,7 @@ const Dashboard = () => {
 
                   // Call API to pump water
                   axios
-                    .post(
-                      `http://localhost:8000/api/tank/${mainTank._id}/pump-water`
-                    )
+                    .post(`${API_BASE_URL}/tank/${mainTank._id}/pump-water`)
                     .then((res) => {
                       // Update tank data with new values
                       setMainTank(res.data);
@@ -130,7 +129,7 @@ const Dashboard = () => {
                     onClick={() => {
                       axios
                         .get(
-                          `http://localhost:8000/api/tank/main-tank-value-ultrasonic/${mainTank._id}`
+                          `${API_BASE_URL}/tank/main-tank-value-ultrasonic/${mainTank._id}`
                         )
                         .then((res) => {
                           console.log("Ultrasonic value:", res.data);

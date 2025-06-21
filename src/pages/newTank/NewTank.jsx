@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Select from "react-select";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 import "./newTank.css";
 
 const NewTank = () => {
@@ -77,7 +78,7 @@ const NewTank = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/customer")
+      .get(`${API_BASE_URL}/customer`)
       .then((res) => {
         const customerOptions = res.data.map((customer) => ({
           value: customer._id,
@@ -88,7 +89,7 @@ const NewTank = () => {
       .catch((error) => console.error("Error fetching customers:", error));
 
     axios
-      .get("http://localhost:8000/api/city")
+      .get(`${API_BASE_URL}/city`)
       .then((res) => {
         const cityOptions = res.data.map((city) => ({
           value: city._id,
@@ -165,7 +166,7 @@ const NewTank = () => {
       console.log("Payload to be sent:", payload);
 
       axios
-        .post("http://localhost:8000/api/tank/", payload)
+        .post(`${API_BASE_URL}/tank/`, payload)
         .then((res) => {
           console.log("Tank added successfully:", res.data);
           alert("Tank created ✅");

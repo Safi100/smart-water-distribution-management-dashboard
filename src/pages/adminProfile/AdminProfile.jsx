@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Notify } from "../../components/Notify";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 import "./adminProfile.css";
 import DataForm from "./DataForm";
 import PasswordForm from "./PasswordForm";
@@ -29,7 +30,7 @@ const AdminProfilePage = ({ currentUser }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/admin/${id}`)
+      .get(`${API_BASE_URL}/admin/${id}`)
       .then((res) => {
         setAdmin(res.data);
       })

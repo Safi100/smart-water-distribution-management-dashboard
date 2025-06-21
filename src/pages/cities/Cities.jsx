@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { API_BASE_URL } from "../../config/api";
 import "./cities.css";
 
 const Cities = () => {
   const [cities, setCities] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/city")
+      .get(`${API_BASE_URL}/city`)
       .then((res) => setCities(res.data))
       .catch((err) => console.log(err));
   }, []);

@@ -10,6 +10,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { ToastContainer } from "react-toastify";
 import { Notify } from "../../components/Notify";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 import "./bills.css";
 
 const stripePromise = loadStripe(
@@ -49,7 +50,7 @@ const PaymentFormContent = ({ onCancel, onPaymentSuccess }) => {
       if (paymentIntent && paymentIntent.status === "succeeded") {
         try {
           const response = await axios.put(
-            `http://localhost:8000/api/bill/${id}/payment-success`
+            `${API_BASE_URL}/bill/${id}/payment-success`
           );
           Notify("✅ Payment confirmed and status updated.", "success");
           onPaymentSuccess(response.data);
@@ -110,7 +111,7 @@ const BillProfile = () => {
   const fetchBillData = () => {
     setIsLoading(true);
     axios
-      .get(`http://localhost:8000/api/bill/${id}`)
+      .get(`${API_BASE_URL}/bill/${id}`)
       .then((res) => setBill(res.data))
       .catch((err) => {
         console.error("Error fetching bill:", err);
@@ -131,7 +132,7 @@ const BillProfile = () => {
 
     setIsLoading(true);
     axios
-      .post(`http://localhost:8000/api/bill/${id}/pay-admin`)
+      .post(`${API_BASE_URL}/bill/${id}/pay-admin`)
       .then((res) => {
         setClientSecret(res.data.clientSecret);
         setShowPaymentForm(true);

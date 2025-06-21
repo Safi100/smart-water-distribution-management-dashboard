@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 export const AuthContext = createContext([]);
 
@@ -19,7 +20,7 @@ export function AuthContextProvider({ children }) {
       return;
     }
     axios
-      .get("http://localhost:8000/api/admin/current-user")
+      .get(`${API_BASE_URL}/admin/current-user`)
       .then((res) => {
         setCurrentUser(res.data);
       })
@@ -33,7 +34,7 @@ export function AuthContextProvider({ children }) {
 
   const logout = () => {
     axios
-      .post("http://localhost:8000/api/admin/logout")
+      .post(`${API_BASE_URL}/admin/logout`)
       .then(() => {
         setCurrentUser(null);
         window.location.href = "/login";

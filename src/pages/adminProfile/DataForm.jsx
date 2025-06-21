@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Notify } from "../../components/Notify";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 import "./adminProfile.css";
 
 const DataForm = ({ admin, setAdmin }) => {
@@ -29,7 +30,7 @@ const DataForm = ({ admin, setAdmin }) => {
     event.preventDefault();
     console.log(formData);
     axios
-      .put("http://localhost:8000/api/admin/update-profile", formData)
+      .put(`${API_BASE_URL}/admin/update-profile`, formData)
       .then((res) => {
         setAdmin(res.data);
         Notify("Profile updated successfully");

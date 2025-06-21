@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { Notify } from "../../components/Notify";
+import { API_BASE_URL } from "../../config/api";
 import "./auth.css";
 
 const Login = () => {
@@ -23,7 +24,7 @@ const Login = () => {
     // Send form data to server for authentication
     console.log(formData);
     axios
-      .post("http://localhost:8000/api/admin/login", formData)
+      .post(`${API_BASE_URL}/admin/login`, formData)
       .then((res) => {
         window.location.href = "/";
       })

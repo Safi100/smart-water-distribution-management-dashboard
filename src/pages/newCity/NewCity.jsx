@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Notify } from "../../components/Notify";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 import "./newCity.css";
 
 const NewCity = () => {
@@ -12,7 +13,7 @@ const NewCity = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/city", { name: cityName })
+      .post(`${API_BASE_URL}/city`, { name: cityName })
       .then((res) => {
         Notify("City added successfully.");
         setCityName("");

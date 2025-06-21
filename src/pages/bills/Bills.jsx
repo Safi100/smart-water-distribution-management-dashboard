@@ -5,6 +5,7 @@ import { MaterialReactTable } from "material-react-table";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 
 const Bills = () => {
   const [searchParams] = useSearchParams();
@@ -32,7 +33,7 @@ const Bills = () => {
   // Fetch customers
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/customer")
+      .get(`${API_BASE_URL}/customer`)
       .then((res) => {
         const customerOptions = res.data.map((customer) => ({
           value: customer._id,
@@ -45,7 +46,7 @@ const Bills = () => {
 
   // Fetch bills
   useEffect(() => {
-    let url = `http://localhost:8000/api/bill?status=${selectedStatus.value}`;
+    let url = `${API_BASE_URL}/bill?status=${selectedStatus.value}`;
     if (selectedCustomer.value !== "All") {
       url += `&customerId=${selectedCustomer.value}`;
     }

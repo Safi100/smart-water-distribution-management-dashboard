@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { Notify } from "../../components/Notify";
+import { API_BASE_URL } from "../../config/api";
 import "./auth.css";
 
 const ForgotPassword = () => {
@@ -14,7 +15,7 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/admin/forgot-password", { email })
+      .post(`${API_BASE_URL}/admin/forgot-password`, { email })
       .then((res) => {
         Notify("Email sent successfully. Please check your inbox.");
         setEmail("");
