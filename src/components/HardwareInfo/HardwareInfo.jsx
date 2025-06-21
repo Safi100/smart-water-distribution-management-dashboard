@@ -121,13 +121,6 @@ const HardwareInfo = ({
     enhancedHardwareData.hasOwnProperty(item.key)
   );
 
-  // Debug: طباعة البيانات للتحقق
-  console.log("Original Hardware Data:", hardwareData);
-  console.log("Tank Data:", tankData);
-  console.log("Enhanced Hardware Data:", enhancedHardwareData);
-  console.log("Is Main Tank:", isMainTank);
-  console.log("Available Hardware Items:", hardwareItems);
-
   return (
     <Card className="hardware-card" elevation={3}>
       <CardContent>
