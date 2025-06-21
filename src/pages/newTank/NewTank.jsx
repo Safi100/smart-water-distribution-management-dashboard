@@ -23,8 +23,6 @@ const NewTank = () => {
       ultrasonic_sensor_echo: "",
       waterflow_sensor: "",
       solenoid_valve: "",
-      lcd_scl: "",
-      lcd_sda: "",
     },
     family_members: [],
   });
@@ -157,8 +155,6 @@ const NewTank = () => {
           ),
           waterflow_sensor: parseInt(formData.hardware.waterflow_sensor),
           solenoid_valve: parseInt(formData.hardware.solenoid_valve),
-          lcd_scl: parseInt(formData.hardware.lcd_scl),
-          lcd_sda: parseInt(formData.hardware.lcd_sda),
         },
         family_members: formData.family_members,
       };
@@ -336,34 +332,6 @@ const NewTank = () => {
                   name="hardware.solenoid_valve"
                   placeholder="Enter GPIO number"
                   value={formData.hardware.solenoid_valve || ""}
-                  onChange={handleFormChange}
-                />
-              </div>
-              <div className="input_div">
-                <label className="mb-4">LCD screen</label>
-                <div className="mb-3">
-                  <label className="mb-2" htmlFor="scl">
-                    SCL
-                  </label>
-                  <input
-                    className="mb-2"
-                    type="number"
-                    id="scl"
-                    name="hardware.lcd_scl"
-                    placeholder="Enter GPIO number"
-                    value={formData.hardware.lcd_scl || ""}
-                    onChange={handleFormChange}
-                  />
-                </div>
-                <label className="mb-2" htmlFor="sda">
-                  SDA
-                </label>
-                <input
-                  type="number"
-                  id="sda"
-                  name="hardware.lcd_sda"
-                  placeholder="Enter GPIO number"
-                  value={formData.hardware.lcd_sda || ""}
                   onChange={handleFormChange}
                 />
               </div>

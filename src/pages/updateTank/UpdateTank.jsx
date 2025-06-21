@@ -28,8 +28,6 @@ const UpdateTank = () => {
       ultrasonic_sensor_echo: "",
       waterflow_sensor: "",
       solenoid_valve: "",
-      lcd_scl: "",
-      lcd_sda: "",
     },
     family_members: [],
   });
@@ -61,8 +59,6 @@ const UpdateTank = () => {
               tankData.hardware?.ultrasonic_sensor_echo || "",
             waterflow_sensor: tankData.hardware?.waterflow_sensor || "",
             solenoid_valve: tankData.hardware?.solenoid_valve || "",
-            lcd_scl: tankData.hardware?.lcd_scl || "",
-            lcd_sda: tankData.hardware?.lcd_sda || "",
           },
           family_members:
             tankData.family_members?.map((member) => ({
@@ -235,8 +231,6 @@ const UpdateTank = () => {
           ),
           waterflow_sensor: parseInt(formData.hardware.waterflow_sensor),
           solenoid_valve: parseInt(formData.hardware.solenoid_valve),
-          lcd_scl: parseInt(formData.hardware.lcd_scl),
-          lcd_sda: parseInt(formData.hardware.lcd_sda),
         },
         family_members: formData.family_members.map((member) => {
           // Remove _id if it's null to avoid issues with the API
@@ -468,36 +462,6 @@ const UpdateTank = () => {
                   name="hardware.solenoid_valve"
                   placeholder="Enter GPIO number"
                   value={formData.hardware.solenoid_valve || ""}
-                  onChange={handleFormChange}
-                  disabled={loading}
-                />
-              </div>
-              <div className="input_div">
-                <label className="mb-4">LCD screen</label>
-                <div className="mb-3">
-                  <label className="mb-2" htmlFor="scl">
-                    SCL
-                  </label>
-                  <input
-                    className="mb-2"
-                    type="number"
-                    id="scl"
-                    name="hardware.lcd_scl"
-                    placeholder="Enter GPIO number"
-                    value={formData.hardware.lcd_scl || ""}
-                    onChange={handleFormChange}
-                    disabled={loading}
-                  />
-                </div>
-                <label className="mb-2" htmlFor="sda">
-                  SDA
-                </label>
-                <input
-                  type="number"
-                  id="sda"
-                  name="hardware.lcd_sda"
-                  placeholder="Enter GPIO number"
-                  value={formData.hardware.lcd_sda || ""}
                   onChange={handleFormChange}
                   disabled={loading}
                 />
