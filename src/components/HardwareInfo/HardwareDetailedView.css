@@ -1,0 +1,197 @@
+/* Hardware Detailed View Styles */
+.hardware-detailed-container {
+  background: #242526 !important;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hardware-detailed-container .MuiAccordion-root {
+  background: #242526 !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  margin-bottom: 16px !important;
+}
+
+.hardware-detailed-container .MuiAccordion-root:before {
+  display: none;
+}
+
+.hardware-detailed-container .MuiAccordionSummary-root {
+  background: #3a3b3c !important;
+  border-radius: 8px 8px 0 0 !important;
+  min-height: 56px !important;
+}
+
+.hardware-detailed-container .MuiAccordionSummary-root:hover {
+  background: #4a4b4c !important;
+}
+
+.hardware-detailed-container .MuiAccordionSummary-content {
+  margin: 12px 0 !important;
+}
+
+.hardware-detailed-container .MuiAccordionDetails-root {
+  background: #242526 !important;
+  padding: 20px !important;
+  border-radius: 0 0 8px 8px !important;
+}
+
+.hardware-detailed-container .MuiPaper-root {
+  background: #3a3b3c !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.hardware-detailed-container .MuiTableHead-root {
+  background: #242526 !important;
+}
+
+.hardware-detailed-container .MuiTableCell-root {
+  color: #fff !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.hardware-detailed-container .MuiTableCell-head {
+  background: #242526 !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+}
+
+.hardware-detailed-container .MuiDivider-root {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.hardware-detailed-container .MuiTypography-h6 {
+  color: #fff !important;
+}
+
+.hardware-detailed-container .MuiTypography-body2 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.hardware-detailed-container .MuiTypography-caption {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Hardware spec cards */
+.hardware-spec-card {
+  background: #3a3b3c !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.hardware-spec-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.hardware-spec-icon-container {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.hardware-spec-card:hover .hardware-spec-icon-container {
+  transform: scale(1.1);
+}
+
+/* Status cards */
+.status-card {
+  background: #3a3b3c !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  padding: 16px !important;
+  text-align: center;
+  transition: all 0.3s ease !important;
+}
+
+.status-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.status-card .MuiTypography-h4 {
+  font-weight: bold !important;
+  margin-bottom: 8px !important;
+}
+
+.status-card .MuiTypography-body2 {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.875rem !important;
+}
+
+/* Chips styling */
+.hardware-detailed-container .MuiChip-root {
+  background: #242526 !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.hardware-detailed-container .MuiChip-colorSuccess {
+  background: rgba(76, 175, 80, 0.2) !important;
+  color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+
+.hardware-detailed-container .MuiChip-colorError {
+  background: rgba(244, 67, 54, 0.2) !important;
+  color: #f44336 !important;
+  border-color: #f44336 !important;
+}
+
+.hardware-detailed-container .MuiChip-outlined {
+  background: transparent !important;
+}
+
+/* Table styling */
+.hardware-table-container {
+  background: #242526 !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.hardware-table-container .MuiTable-root {
+  background: transparent !important;
+}
+
+.hardware-table-container .MuiTableRow-root:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hardware-detailed-container .MuiAccordionDetails-root {
+    padding: 16px !important;
+  }
+  
+  .hardware-spec-card {
+    margin-bottom: 16px;
+  }
+  
+  .status-card {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hardware-detailed-container .MuiAccordionSummary-root {
+    min-height: 48px !important;
+  }
+  
+  .hardware-spec-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .status-card .MuiTypography-h4 {
+    font-size: 1.5rem !important;
+  }
+}

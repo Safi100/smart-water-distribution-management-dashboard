@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { API_BASE_URL } from "../../config/api";
 import "./tankProfile.css"; // Import CSS for styling
 import WaterTank from "../../components/WaterTank/WaterTank";
+import HardwareInfo from "../../components/HardwareInfo/HardwareInfo";
+import HardwareDetailedView from "../../components/HardwareInfo/HardwareDetailedView";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -110,6 +112,17 @@ const TankProfile = () => {
           ></iframe>
         </div>
       </div>
+
+      {/* Hardware Information Section */}
+      {tank.hardware && (
+        <div className="hardware_section">
+          <HardwareInfo
+            hardwareData={tank.hardware}
+            title="Tank Hardware Configuration"
+          />
+        </div>
+      )}
+
       <div className="tank_profile_tank_info">
         <div className="tank-visual-container">
           <WaterTank
@@ -344,6 +357,16 @@ const TankProfile = () => {
           })}
         </div>
       </div>
+
+      {/* Detailed Hardware View Section */}
+      {tank.hardware && (
+        <div className="hardware_detailed_section">
+          <HardwareDetailedView
+            tankData={tank}
+            title="Detailed Hardware Configuration"
+          />
+        </div>
+      )}
     </div>
   );
 };

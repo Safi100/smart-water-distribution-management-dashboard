@@ -1,0 +1,219 @@
+/* Hardware Info Component Styles */
+.hardware-card {
+  margin: 20px 0;
+  border-radius: 12px !important;
+  background: #242526 !important;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hardware-card .MuiCardContent-root {
+  padding: 24px !important;
+}
+
+.hardware-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.hardware-main-icon {
+  font-size: 32px !important;
+  color: #fff;
+}
+
+.hardware-title {
+  color: #fff !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+}
+
+.hardware-divider {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  margin: 20px 0 !important;
+}
+
+.hardware-grid {
+  margin-top: 20px;
+}
+
+.hardware-item {
+  padding: 20px !important;
+  border-radius: 12px !important;
+  background: #3a3b3c !important;
+  transition: all 0.3s ease !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hardware-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4) !important;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hardware-item-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.hardware-icon-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+.hardware-item:hover .hardware-icon-container {
+  transform: scale(1.1);
+}
+
+.hardware-item-title {
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.hardware-item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.hardware-pin-chip {
+  font-size: 0.875rem !important;
+  font-weight: bold !important;
+  padding: 8px 12px !important;
+}
+
+.hardware-description {
+  text-align: center !important;
+  font-size: 0.875rem !important;
+  line-height: 1.4 !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.hardware-summary {
+  margin-top: 30px;
+  padding: 20px;
+  background: #3a3b3c;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-title {
+  color: #fff !important;
+  font-weight: 600 !important;
+  margin-bottom: 16px !important;
+  text-align: center;
+}
+
+.summary-item {
+  text-align: center;
+  padding: 12px;
+  background: #242526;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-item .MuiTypography-body2 {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.75rem !important;
+  margin-bottom: 4px !important;
+}
+
+.summary-item .MuiTypography-h6 {
+  color: #fff !important;
+  font-weight: bold !important;
+  font-size: 1.25rem !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hardware-card .MuiCardContent-root {
+    padding: 16px !important;
+  }
+
+  .hardware-item {
+    padding: 16px !important;
+  }
+
+  .hardware-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+
+  .hardware-item-title {
+    font-size: 0.875rem !important;
+  }
+
+  .hardware-summary {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hardware-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .hardware-title {
+    font-size: 1.25rem !important;
+  }
+
+  .hardware-main-icon {
+    font-size: 28px !important;
+  }
+}
+
+/* Dark mode compatibility */
+.hardware-card.dark-mode {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.hardware-card.dark-mode .hardware-item {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #fff;
+}
+
+.hardware-card.dark-mode .hardware-item-title {
+  color: #fff !important;
+}
+
+.hardware-card.dark-mode .hardware-description {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Animation for loading state */
+.hardware-loading {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
