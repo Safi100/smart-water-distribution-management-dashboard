@@ -217,3 +217,13 @@
     opacity: 1;
   }
 }
+
+/* ألوان المكونات المستخدمة */
+/*
+--water-sensor: #2196F3;      أزرق - Water Flow Sensor
+--solenoid-valve: #FF9800;    برتقالي - Solenoid Valve
+--echo-sensor: #4CAF50;       أخضر - Ultrasonic Echo
+--trig-sensor: #9C27B0;       بنفسجي - Ultrasonic Trigger
+--water-pump: #2196F3;        أزرق - Water Pump
+--pump-timer: #FF5722;        أحمر برتقالي - Pump Duration
+*/

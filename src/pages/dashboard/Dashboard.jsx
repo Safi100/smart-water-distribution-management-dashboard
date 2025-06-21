@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./dashboard.css";
 import WaterTank from "../../components/WaterTank/WaterTank";
+import HardwareInfo from "../../components/HardwareInfo/HardwareInfo";
 import { API_BASE_URL } from "../../config/api";
 
 const Dashboard = () => {
@@ -16,6 +17,23 @@ const Dashboard = () => {
   const [mainTank, setMainTank] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Helper functions for tank status
+  const getStatusClass = (currentLevel, maxCapacity) => {
+    const percentage = (currentLevel / maxCapacity) * 100;
+    if (percentage >= 80) return "status-high";
+    if (percentage >= 50) return "status-medium";
+    if (percentage >= 20) return "status-low";
+    return "status-critical";
+  };
+
+  const getStatusText = (currentLevel, maxCapacity) => {
+    const percentage = (currentLevel / maxCapacity) * 100;
+    if (percentage >= 80) return "Optimal";
+    if (percentage >= 50) return "Good";
+    if (percentage >= 20) return "Low";
+    return "Critical";
+  };
 
   useEffect(() => {
     // Fetch dashboard data
@@ -113,49 +131,110 @@ const Dashboard = () => {
           ) : error ? (
             <div className="error-message">{error}</div>
           ) : mainTank ? (
-            <div className="tank-dashboard-card">
-              <div className="tank-info">
-                <h3>{mainTank.city?.name} Main Tank</h3>
-                <div className="tank-details">
-                  <p>
-                    <strong>Capacity:</strong> {mainTank.max_capacity} liters
-                  </p>
-                  <p>
-                    <strong>Current Level:</strong> {mainTank.current_level}{" "}
-                    liters
-                  </p>
+            <div className="tank-dashboard-layout">
+              {/* Tank Overview Card */}
+              <div className="tank-overview-card">
+                <div className="tank-header">
+                  <h3>{mainTank.city?.name} Main Tank</h3>
+                  <div className="tank-status">
+                    <span
+                      className={`status-indicator ${getStatusClass(
+                        mainTank.current_level,
+                        mainTank.max_capacity
+                      )}`}
+                    >
+                      {getStatusText(
+                        mainTank.current_level,
+                        mainTank.max_capacity
+                      )}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="tank-stats-grid">
+                  <div className="stat-item">
+                    <span className="stat-label">Current Level</span>
+                    <span className="stat-value">
+                      {mainTank.current_level?.toFixed(2)} L
+                    </span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Max Capacity</span>
+                    <span className="stat-value">
+                      {mainTank.max_capacity?.toFixed(2)} L
+                    </span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Fill Percentage</span>
+                    <span className="stat-value">
+                      {(
+                        (mainTank.current_level / mainTank.max_capacity) *
+                        100
+                      ).toFixed(1)}
+                      %
+                    </span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Monthly Capacity</span>
+                    <span className="stat-value">
+                      {mainTank.monthly_capacity || "N/A"} L
+                    </span>
+                  </div>
+                </div>
+
+                <div className="tank-actions">
                   <button
                     className="read-value-btn"
                     onClick={() => {
+                      setLoading(true);
                       axios
                         .get(
                           `${API_BASE_URL}/tank/main-tank-value-ultrasonic/${mainTank._id}`
                         )
                         .then((res) => {
                           console.log("Ultrasonic value:", res.data);
-                          // Handle the response here
-                          // Assuming res.data contains the new current_level value
                           const updatedTank = {
                             ...mainTank,
-                            current_level: res.data.estimated_volume_liters, // Or however the data is structured
+                            current_level: res.data.estimated_volume_liters,
                           };
                           setMainTank(updatedTank);
                         })
                         .catch((err) => {
                           console.error("Error reading ultrasonic value:", err);
+                          alert(
+                            "Failed to read sensor value. Please try again."
+                          );
+                        })
+                        .finally(() => {
+                          setLoading(false);
                         });
                     }}
+                    disabled={loading}
                   >
-                    📡 Read Value
+                    📡 Read Sensor Value
                   </button>
                 </div>
               </div>
-              <div className="tank-visual">
+
+              {/* Tank Visual */}
+              <div className="tank-visual-card">
                 <WaterTank
                   maxCapacity={mainTank.max_capacity}
                   currentLevel={mainTank.current_level}
                 />
               </div>
+
+              {/* Hardware Info */}
+              {mainTank.hardware && (
+                <div className="tank-hardware-card">
+                  <HardwareInfo
+                    hardwareData={mainTank.hardware}
+                    tankData={mainTank}
+                    title="Main Tank Hardware Status"
+                    isMainTank={true}
+                  />
+                </div>
+              )}
             </div>
           ) : (
             <div className="no-data-message">No tank data available</div>

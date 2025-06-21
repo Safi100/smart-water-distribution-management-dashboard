@@ -57,6 +57,127 @@
   color: #fff;
 }
 
+/* New Tank Dashboard Layout */
+.tank-dashboard-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.tank-overview-card {
+  background: #3a3b3c;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tank-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.tank-header h3 {
+  font-size: 24px;
+  margin: 0;
+  color: #61dafb;
+  font-weight: 600;
+}
+
+.tank-status {
+  display: flex;
+  align-items: center;
+}
+
+.status-indicator {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-high {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+
+.status-medium {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  border: 1px solid #ffc107;
+}
+
+.status-low {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+  border: 1px solid #ff9800;
+}
+
+.status-critical {
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+  border: 1px solid #f44336;
+}
+
+.tank-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
+  background: #242526;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tank-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tank-visual-card {
+  background: #3a3b3c;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.tank-hardware-card {
+  grid-column: 1 / -1;
+  margin-top: 24px;
+}
+
+/* Legacy styles for backward compatibility */
 .tank-dashboard-card {
   display: flex;
   flex-wrap: wrap;
@@ -84,26 +205,36 @@
   background-color: #ff9800;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 8px 16px;
+  border-radius: 8px;
+  padding: 12px 20px;
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 15px;
+  gap: 8px;
+  text-decoration: none;
+  border: 1px solid transparent;
 }
 
 .read-value-btn:hover {
   background-color: #f57c00;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(255, 152, 0, 0.3);
 }
 
 .read-value-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(255, 152, 0, 0.2);
+}
+
+.read-value-btn:disabled {
+  background-color: #666;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .tank-visual {
@@ -114,18 +245,26 @@
 }
 
 .view-details-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background-color: #2196f3;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 20px;
+  border-radius: 8px;
   text-decoration: none;
-  margin-top: 20px;
-  transition: background-color 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
 .view-details-btn:hover {
-  background-color: #0d8bf2;
+  background-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(33, 150, 243, 0.3);
+  color: white;
+  text-decoration: none;
 }
 
 .loading-indicator,
@@ -172,6 +311,20 @@
     gap: 16px;
   }
 
+  .tank-dashboard-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .tank-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tank-actions {
+    justify-content: center;
+  }
+
   .tank-dashboard-card {
     flex-direction: column;
   }
@@ -191,6 +344,51 @@
   .dashboard_row {
     grid-template-columns: 1fr; /* Single column layout */
     gap: 12px;
+  }
+
+  .tank-dashboard-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .tank-overview-card,
+  .tank-visual-card {
+    padding: 16px;
+  }
+
+  .tank-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tank-header h3 {
+    font-size: 20px;
+  }
+
+  .tank-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-item {
+    padding: 12px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .tank-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .read-value-btn,
+  .view-details-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
   }
 
   .tank-info h3 {
