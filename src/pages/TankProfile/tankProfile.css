@@ -32,6 +32,160 @@
   text-decoration: none;
 }
 
+/* Tank Information Section */
+.tank-info-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+/* Tank Info Card */
+.tank-info-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+.tank-info-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 32px;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+}
+
+.header-icon {
+  font-size: 32px;
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.header-content {
+  flex: 1;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #fff;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Tank Info Grid */
+.tank-info-grid {
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #1e3c72;
+  transition: all 0.3s ease;
+}
+
+.info-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.info-icon {
+  font-size: 16px;
+}
+
+.info-value {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-weight: 600;
+}
+
+.value-number {
+  font-size: 18px;
+  color: #1e3c72;
+  font-weight: 700;
+}
+
+.value-unit {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.info-link {
+  color: #1e3c72;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.info-link:hover {
+  color: #2a5298;
+  text-decoration: underline;
+}
+
+/* Tank Location Card */
+.tank-location-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+.location-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 32px;
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+}
+
+.map-wrapper {
+  padding: 24px;
+}
+
+.location-map {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Legacy support */
 .tank_profile_info {
   padding: 20px;
   border-radius: 8px;
@@ -43,6 +197,7 @@
   justify-content: space-between;
   background: #242526;
 }
+
 .tank_profile_info .map-container {
   width: 100%;
   max-width: 428px;
@@ -275,11 +430,146 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive adjustments for hardware sections */
+/* Responsive Design for Tank Info Section */
+@media (max-width: 1024px) {
+  .tank-info-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .tank-info-header,
+  .location-header {
+    padding: 20px 24px;
+  }
+
+  .tank-info-grid {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .map-wrapper {
+    padding: 20px;
+  }
+}
+
 @media (max-width: 768px) {
+  .tank-info-section {
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .tank-info-header,
+  .location-header {
+    padding: 16px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .header-icon {
+    font-size: 28px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+  }
+
+  .tank-info-grid {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .info-item:hover {
+    transform: translateY(-2px);
+  }
+
+  .info-value {
+    align-self: flex-end;
+  }
+
+  .map-wrapper {
+    padding: 16px;
+  }
+
+  .location-map {
+    height: 250px;
+  }
+
+  /* Hardware sections responsive */
   .hardware_section,
   .hardware_detailed_section {
     margin: 20px 0;
     padding: 15px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .tank-info-header,
+  .location-header {
+    padding: 12px 16px;
+  }
+
+  .header-icon {
+    font-size: 24px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .tank-info-grid {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .info-item {
+    padding: 12px;
+  }
+
+  .info-label {
+    font-size: 13px;
+  }
+
+  .value-number {
+    font-size: 16px;
+  }
+
+  .map-wrapper {
+    padding: 12px;
+  }
+
+  .location-map {
+    height: 200px;
+    border-radius: 8px;
+  }
+}
+
+/* Legacy Responsive design */
+@media (max-width: 823px) {
+  .tank_profile_info .map-container {
+    width: 100%;
+  }
+
+  .tank_profile_tank_info {
+    flex-direction: column;
+  }
+
+  .tank_profile_tank_info .tank-visual-container {
+    width: 100%;
+  }
+
+  .tank_profile_tank_info .chart-container {
+    width: 100%;
   }
 }

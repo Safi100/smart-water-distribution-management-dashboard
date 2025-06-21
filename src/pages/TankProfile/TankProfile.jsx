@@ -71,45 +71,122 @@ const TankProfile = () => {
         </a>
       </div>
 
-      <div className="tank_profile_info">
-        <div className="tank_details">
-          <h2 className="title">Tank Information</h2>
-          <p className="">
-            <strong>Owner:</strong>{" "}
-            <a className="text-info" href={`/customer/${tank.owner?._id}`}>
-              {tank.owner?.name}
-            </a>
-          </p>
-          <p className="">
-            <strong>City:</strong>{" "}
-            <a className="text-info" href={`/city/${tank.city?._id}`}>
-              {tank.city?.name}
-            </a>
-          </p>
-          <p className="">
-            <strong>Current Level:</strong> {tank.current_level} liters
-          </p>
-          <p className="">
-            <strong>Max Capacity:</strong> {tank.max_capacity} liters
-          </p>
-          <p className="">
-            <strong>Monthly Capacity:</strong> {tank.monthly_capacity} liters
-          </p>
-          <p className="mb-0">
-            <strong>Family members:</strong> {tank.family_members?.length}
-          </p>
+      {/* Tank Information Section */}
+      <div className="tank-info-section">
+        <div className="tank-info-card">
+          <div className="tank-info-header">
+            <div className="header-icon">🏗️</div>
+            <div className="header-content">
+              <h2 className="section-title">Tank Information</h2>
+              <p className="section-subtitle">
+                Complete tank details and specifications
+              </p>
+            </div>
+          </div>
+
+          <div className="tank-info-grid">
+            {/* Owner Information */}
+            <div className="info-item">
+              <div className="info-label">
+                <span className="info-icon">👤</span>
+                <span>Owner</span>
+              </div>
+              <div className="info-value">
+                <a className="info-link" href={`/customer/${tank.owner?._id}`}>
+                  {tank.owner?.name}
+                </a>
+              </div>
+            </div>
+
+            {/* City Information */}
+            <div className="info-item">
+              <div className="info-label">
+                <span className="info-icon">🏙️</span>
+                <span>City</span>
+              </div>
+              <div className="info-value">
+                <a className="info-link" href={`/city/${tank.city?._id}`}>
+                  {tank.city?.name}
+                </a>
+              </div>
+            </div>
+
+            {/* Current Level */}
+            <div className="info-item">
+              <div className="info-label">
+                <span className="info-icon">💧</span>
+                <span>Current Level</span>
+              </div>
+              <div className="info-value">
+                <span className="value-number">{tank.current_level}</span>
+                <span className="value-unit">liters</span>
+              </div>
+            </div>
+
+            {/* Max Capacity */}
+            <div className="info-item">
+              <div className="info-label">
+                <span className="info-icon">🏗️</span>
+                <span>Max Capacity</span>
+              </div>
+              <div className="info-value">
+                <span className="value-number">{tank.max_capacity}</span>
+                <span className="value-unit">liters</span>
+              </div>
+            </div>
+
+            {/* Monthly Capacity */}
+            <div className="info-item">
+              <div className="info-label">
+                <span className="info-icon">📅</span>
+                <span>Monthly Capacity</span>
+              </div>
+              <div className="info-value">
+                <span className="value-number">{tank.monthly_capacity}</span>
+                <span className="value-unit">liters</span>
+              </div>
+            </div>
+
+            {/* Family Members */}
+            <div className="info-item">
+              <div className="info-label">
+                <span className="info-icon">👥</span>
+                <span>Family Members</span>
+              </div>
+              <div className="info-value">
+                <span className="value-number">
+                  {tank.family_members?.length}
+                </span>
+                <span className="value-unit">members</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="map-container">
-          <h2 className="title">Tank Location</h2>
-          <iframe
-            src={mapSrc}
-            width="100%"
-            height="350"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+
+        {/* Tank Location Card */}
+        <div className="tank-location-card">
+          <div className="location-header">
+            <div className="header-icon">📍</div>
+            <div className="header-content">
+              <h2 className="section-title">Tank Location</h2>
+              <p className="section-subtitle">
+                Geographic position and coordinates
+              </p>
+            </div>
+          </div>
+
+          <div className="map-wrapper">
+            <iframe
+              src={mapSrc}
+              width="100%"
+              height="350"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="location-map"
+            ></iframe>
+          </div>
         </div>
       </div>
 
