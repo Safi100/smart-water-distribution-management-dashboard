@@ -61,29 +61,75 @@ const Dashboard = () => {
   }, []);
   return (
     <div className="wrapper py-4">
-      {/* Dashboard Stats */}
-      <h2 className="section-title my-4">System Overview</h2>
-      <div className="dashboard_row">
-        <a href="/customers" className="dashboard_data_div">
-          <h4>Total customers</h4>
-          <p className="mt-3 fw-bold fs-4">{data.totalCustomers}</p>
-        </a>
-        <a href="/employees" className="dashboard_data_div">
-          <h4>Total employees</h4>
-          <p className="mt-3 fw-bold fs-4">{data.totalEmployees}</p>
-        </a>
-        <a href="/cities" className="dashboard_data_div">
-          <h4>Total cities</h4>
-          <p className="mt-3 fw-bold fs-4">{data.totalCities}</p>
-        </a>
-        <a href="/bills?status=Paid" className="dashboard_data_div">
-          <h4>Total paid bills</h4>
-          <p className="mt-3 fw-bold fs-4">{data.totalPaidBills}</p>
-        </a>
-        <a href="/bills?status=Unpaid" className="dashboard_data_div">
-          <h4>Total unpaid bills</h4>
-          <p className="mt-3 fw-bold fs-4">{data.totalUnPaidBills}</p>
-        </a>
+      {/* System Overview */}
+      <div className="system-overview-section">
+        <div className="overview-header">
+          <h2 className="overview-title">System Overview</h2>
+          <p className="overview-subtitle">
+            Monitor your water management system at a glance
+          </p>
+        </div>
+
+        <div className="overview-grid">
+          <div className="overview-category">
+            <h3 className="category-title">👥 Users & Management</h3>
+            <div className="category-cards">
+              <a href="/customers" className="overview-card customers-card">
+                <div className="card-icon">👤</div>
+                <div className="card-content">
+                  <span className="card-label">Customers</span>
+                  <span className="card-value">{data.totalCustomers}</span>
+                </div>
+              </a>
+              <a href="/employees" className="overview-card employees-card">
+                <div className="card-icon">👨‍💼</div>
+                <div className="card-content">
+                  <span className="card-label">Employees</span>
+                  <span className="card-value">{data.totalEmployees}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div className="overview-category">
+            <h3 className="category-title">🏙️ Infrastructure</h3>
+            <div className="category-cards">
+              <a href="/cities" className="overview-card cities-card">
+                <div className="card-icon">🏢</div>
+                <div className="card-content">
+                  <span className="card-label">Cities</span>
+                  <span className="card-value">{data.totalCities}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div className="overview-category">
+            <h3 className="category-title">💰 Billing Status</h3>
+            <div className="category-cards">
+              <a
+                href="/bills?status=Paid"
+                className="overview-card paid-bills-card"
+              >
+                <div className="card-icon">✅</div>
+                <div className="card-content">
+                  <span className="card-label">Paid Bills</span>
+                  <span className="card-value">{data.totalPaidBills}</span>
+                </div>
+              </a>
+              <a
+                href="/bills?status=Unpaid"
+                className="overview-card unpaid-bills-card"
+              >
+                <div className="card-icon">⏳</div>
+                <div className="card-content">
+                  <span className="card-label">Unpaid Bills</span>
+                  <span className="card-value">{data.totalUnPaidBills}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
       {/* Main Tank Section */}
       <div className="main-tank-section">
