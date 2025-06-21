@@ -9,9 +9,8 @@ import {
 import axios from "axios";
 import Navbar from "./components/navbar/Navbar";
 import { useAuth } from "./context/AuthContext";
+import "./config/api"; // تحميل الـ interceptors
 import "./index.css";
-
-axios.defaults.withCredentials = true;
 
 // Lazy load components
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
@@ -54,10 +53,15 @@ function App() {
   const { currentUser, loading } = useAuth();
 
   useEffect(() => {
-    if (!loading && !currentUser && location.pathname !== "/forgot-password") {
+    if (
+      !loading &&
+      !currentUser &&
+      location.pathname !== "/forgot-password" &&
+      location.pathname !== "/login"
+    ) {
       navigate("/login");
     }
-  }, [currentUser, loading, navigate, useLocation]);
+  }, [currentUser, loading, navigate, location.pathname]);
 
   return (
     <Suspense>

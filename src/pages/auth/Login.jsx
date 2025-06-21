@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import { Notify } from "../../components/Notify";
@@ -10,6 +10,12 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  // تنظيف localStorage عند تحميل صفحة Login
+  useEffect(() => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("c_user");
+  }, []);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     const text = value.trimStart(); // Trims leading spaces
@@ -26,10 +32,33 @@ const Login = () => {
     axios
       .post(`${API_BASE_URL}/admin/login`, formData)
       .then((res) => {
-        window.location.href = "/";
+        console.log("Login response:", res.data); // للتأكد من شكل الاستجابة
+
+        // حفظ التوكن في localStorage
+        if (res.data.token) {
+          localStorage.setItem("access_token", res.data.token);
+
+          // حفظ معرف المستخدم إذا كان متوفراً
+          if (res.data.admin_id || res.data.user_id || res.data.id) {
+            localStorage.setItem(
+              "c_user",
+              res.data.admin_id || res.data.user_id || res.data.id
+            );
+          } else {
+            localStorage.setItem("c_user", "true"); // fallback
+          }
+
+          window.location.href = "/";
+        } else {
+          console.error("No token received from server");
+          Notify("Login failed: No token received");
+        }
       })
       .catch((err) => {
         console.error("Error logging in:", err);
+        // تنظيف localStorage عند فشل تسجيل الدخول
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("c_user");
         Notify(err.response?.data || "An error occurred while logging in.");
       });
   };
