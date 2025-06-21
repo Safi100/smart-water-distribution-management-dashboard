@@ -24,11 +24,19 @@ const NewEmployee = () => {
     axios
       .post(`${API_BASE_URL}/admin`, formData)
       .then((res) => {
-        Notify(res.data.message);
+        Notify(res.data.message || "Employee added successfully!");
         setFormData({ name: "", phone: "", email: "" });
+        // Redirect to employees page after successful creation
+        setTimeout(() => {
+          window.location.href = "/employees";
+        }, 1500);
       })
       .catch((error) => {
         console.error("Error response:", error.response);
+        Notify(
+          error.response?.data?.message ||
+            "Failed to add employee. Please try again."
+        );
       })
       .finally(() => {
         setLoading(false);
@@ -36,61 +44,160 @@ const NewEmployee = () => {
   };
 
   return (
-    <div className="wrapper py-4">
+    <div className="new-employee-container">
       <ToastContainer />
-      <h2 className="mb-4 text-center">Add New Admin</h2>
-      <form className="new_employee_form" onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Full Name</label>
-            <input
-              type="text"
-              name="name"
-              className={`form-control`}
-              placeholder="Enter full name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+
+      {/* Header Section */}
+      <div className="employee-form-header">
+        <div className="header-content">
+          <h1 className="employee-form-title">👨‍💼 Add New Employee</h1>
+          <p className="employee-form-subtitle">
+            Create a new employee account for water management system
+            administration
+          </p>
+        </div>
+        <div className="header-decoration">
+          <div className="employee-avatar"></div>
+          <div className="employee-avatar"></div>
+          <div className="employee-avatar"></div>
+        </div>
+      </div>
+
+      {/* Form Card */}
+      <div className="employee-form-card">
+        <div className="employee-form-card-header">
+          <h3>Employee Information</h3>
+          <p>
+            Please fill in all required fields to create a new employee account
+          </p>
+        </div>
+
+        <form className="employee-form" onSubmit={handleSubmit}>
+          <div className="employee-form-grid">
+            {/* Full Name */}
+            <div className="employee-form-group">
+              <label className="employee-form-label">
+                <span className="label-icon">👤</span>
+                <span className="label-text">Full Name</span>
+                <span className="required-indicator">*</span>
+              </label>
+              <div className="employee-input-wrapper">
+                <input
+                  type="text"
+                  name="name"
+                  className="employee-form-input"
+                  placeholder="Enter full name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+                <div className="employee-input-border"></div>
+              </div>
+              <span className="employee-input-helper">First and last name</span>
+            </div>
+
+            {/* Email */}
+            <div className="employee-form-group">
+              <label className="employee-form-label">
+                <span className="label-icon">📧</span>
+                <span className="label-text">Email Address</span>
+                <span className="required-indicator">*</span>
+              </label>
+              <div className="employee-input-wrapper">
+                <input
+                  type="email"
+                  name="email"
+                  className="employee-form-input"
+                  placeholder="Enter email address"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+                <div className="employee-input-border"></div>
+              </div>
+              <span className="employee-input-helper">
+                Used for system login and notifications
+              </span>
+            </div>
+
+            {/* Phone */}
+            <div className="employee-form-group">
+              <label className="employee-form-label">
+                <span className="label-icon">📞</span>
+                <span className="label-text">Phone Number</span>
+                <span className="required-indicator">*</span>
+              </label>
+              <div className="employee-input-wrapper">
+                <input
+                  type="tel"
+                  name="phone"
+                  className="employee-form-input"
+                  placeholder="Enter phone number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
+                <div className="employee-input-border"></div>
+              </div>
+              <span className="employee-input-helper">
+                Include country code (e.g., +970)
+              </span>
+            </div>
           </div>
 
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Email</label>
-            <input
-              type="email"
-              name="email"
-              className={`form-control`}
-              placeholder="Enter email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          {/* Form Actions */}
+          <div className="employee-form-actions">
+            <button
+              type="button"
+              className="employee-btn-secondary"
+              onClick={() => window.history.back()}
+            >
+              <span>←</span>
+              <span>Cancel</span>
+            </button>
 
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Phone</label>
-            <input
-              type="text"
-              name="phone"
-              className={`form-control`}
-              placeholder="Enter phone number"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="col-12">
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-primary mt-3"
+              className="employee-btn-primary"
             >
-              {loading ? "Adding..." : "Add Employee"}
+              {loading ? (
+                <div className="employee-loading-content">
+                  <div className="employee-loading-spinner"></div>
+                  <span>Adding Employee...</span>
+                </div>
+              ) : (
+                <>
+                  <span>✓</span>
+                  <span>Add Employee</span>
+                </>
+              )}
             </button>
           </div>
+        </form>
+      </div>
+
+      {/* Info Cards */}
+      <div className="employee-info-cards">
+        <div className="employee-info-card">
+          <div className="info-icon">🔐</div>
+          <h4>System Access</h4>
+          <p>
+            Employee will have administrative access to the water management
+            system
+          </p>
         </div>
-      </form>
+        <div className="employee-info-card">
+          <div className="info-icon">📊</div>
+          <h4>Dashboard Access</h4>
+          <p>Full access to analytics, reports, and system monitoring tools</p>
+        </div>
+        <div className="employee-info-card">
+          <div className="info-icon">👥</div>
+          <h4>User Management</h4>
+          <p>Ability to manage customers, billing, and water distribution</p>
+        </div>
+      </div>
     </div>
   );
 };
