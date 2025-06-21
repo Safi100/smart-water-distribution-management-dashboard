@@ -10,6 +10,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // تنظيف localStorage عند تحميل صفحة Login
   useEffect(() => {
@@ -27,6 +29,8 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+
     // Send form data to server for authentication
     console.log(formData);
     axios
@@ -48,7 +52,10 @@ const Login = () => {
             localStorage.setItem("c_user", "true"); // fallback
           }
 
-          window.location.href = "/";
+          Notify("Login successful! Redirecting...");
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1000);
         } else {
           console.error("No token received from server");
           Notify("Login failed: No token received");
@@ -59,46 +66,114 @@ const Login = () => {
         // تنظيف localStorage عند فشل تسجيل الدخول
         localStorage.removeItem("access_token");
         localStorage.removeItem("c_user");
-        Notify(err.response?.data || "An error occurred while logging in.");
+        Notify(
+          err.response?.data || "Invalid email or password. Please try again."
+        );
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
   return (
-    <div className="auth_bg">
+    <div className="login-container">
       <ToastContainer />
-      <div className="form_container">
-        <h2 className="auth_heading">Sign in to dashboard</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="input_div">
-            <label htmlFor="email">Email address</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              onChange={handleInputChange}
-              value={formData.email}
-              placeholder="Email"
-              required
-            />
+
+      {/* Background Elements */}
+      <div className="login-background">
+        <div className="water-drop"></div>
+        <div className="water-drop"></div>
+        <div className="water-drop"></div>
+        <div className="water-wave"></div>
+      </div>
+
+      {/* Login Card */}
+      <div className="login-card">
+        {/* Header */}
+        <div className="login-header">
+          <div className="login-logo">
+            <div className="logo-icon">💧</div>
+            <h1>AquaFlow</h1>
           </div>
-          <div className="input_div">
-            <div className="d-flex justify-content-between align-items-center">
-              <label htmlFor="password">Password</label>
-              <a href="/forgot-password">Forgot password?</a>
+          <h2 className="login-title">Sign in to Dashboard</h2>
+          <p className="login-subtitle">Access your water management system</p>
+        </div>
+
+        {/* Form */}
+        <form className="login-form" onSubmit={handleSubmit}>
+          {/* Email Field */}
+          <div className="login-form-group">
+            <label className="login-form-label">
+              <span className="label-icon">📧</span>
+              <span className="label-text">Email Address</span>
+            </label>
+            <div className="login-input-wrapper">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className="login-form-input"
+                placeholder="Enter your email address"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+              <div className="login-input-border"></div>
             </div>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              onChange={handleInputChange}
-              value={formData.password}
-              placeholder="Password"
-              required
-            />
           </div>
-          <button className="btn btn-sm btn-success  w-100 mt-4" type="submit">
-            Sign In
+
+          {/* Password Field */}
+          <div className="login-form-group">
+            <div className="password-label-wrapper">
+              <label className="login-form-label">
+                <span className="label-icon">🔒</span>
+                <span className="label-text">Password</span>
+              </label>
+              <a href="/forgot-password" className="forgot-password-link">
+                Forgot password?
+              </a>
+            </div>
+            <div className="login-input-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                className="login-form-input"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "👁️" : "👁️‍🗨️"}
+              </button>
+              <div className="login-input-border"></div>
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button type="submit" disabled={loading} className="login-submit-btn">
+            {loading ? (
+              <div className="login-loading-content">
+                <div className="login-loading-spinner"></div>
+                <span>Signing In...</span>
+              </div>
+            ) : (
+              <>
+                <span>🚀</span>
+                <span>Sign In to Dashboard</span>
+              </>
+            )}
           </button>
         </form>
+
+        {/* Footer */}
+        <div className="login-footer">
+          <p>Secure access to your water management dashboard</p>
+        </div>
       </div>
     </div>
   );
