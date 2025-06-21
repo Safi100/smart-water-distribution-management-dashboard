@@ -152,6 +152,7 @@ const Dashboard = () => {
                   axios
                     .post(`${API_BASE_URL}/pump-water`)
                     .then((res) => {
+                      console.log("Water pumped successfully:", res.data);
                       // Update tank data with new values
                       setMainTank(res.data);
                       alert("Water pumped successfully!");
