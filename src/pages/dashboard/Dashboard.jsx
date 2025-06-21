@@ -150,11 +150,16 @@ const Dashboard = () => {
 
                   // Call API to pump water
                   axios
-                    .post(`${API_BASE_URL}/tank/${mainTank._id}/pump-water`)
+                    .post(`${API_BASE_URL}/pump-water`)
                     .then((res) => {
                       // Update tank data with new values
                       setMainTank(res.data);
                       alert("Water pumped successfully!");
+                      setMainTank({
+                        ...mainTank,
+                        current_level:
+                          res.data?.main_tank_level?.estimated_volume_liters,
+                      });
                     })
                     .catch((err) => {
                       console.error("Error pumping water:", err);
@@ -244,6 +249,9 @@ const Dashboard = () => {
                             current_level: res.data.estimated_volume_liters,
                           };
                           setMainTank(updatedTank);
+                          alert(
+                            `Sensor value read successfully!\nCurrent level: ${res.data.estimated_volume_liters} L`
+                          );
                         })
                         .catch((err) => {
                           console.error("Error reading ultrasonic value:", err);
