@@ -4,6 +4,16 @@ A comprehensive React-based dashboard for managing smart water distribution syst
 
 > **Note**: This is the software component of a Computer Engineering graduation project, designed to provide a complete digital solution for smart water distribution management.
 
+## 📸 Project Screenshots & Demo
+
+🎯 **Want to see the dashboard in action?**
+
+📋 **[View Complete Project Screenshots & Interface Demo](https://github.com/Safi100/smart-water-distribution-management-dashboard/blob/main/Water%20distribution%20and%20management%20dashboard%20images.pdf)**
+
+_Click the link above to explore detailed screenshots of all dashboard features, user interfaces, and system capabilities!_
+
+---
+
 ## 🌊 Features
 
 ### Core Functionality
@@ -187,11 +197,5 @@ The API configuration is centralized in `src/config/api.js`:
 ## 📄 License
 
 This project is private and proprietary.
-
-## 🆘 Support
-
-For support and questions, please contact the development team.
-
----
 
 **Built with ❤️ for efficient water distribution management**
